@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 // pages
 import HomePage from '../pages/HomePage'
 import AuthPage from "../pages/AuthPage"
@@ -8,18 +8,19 @@ import NotFound from "../pages/NotFound"
 // React Query and its options
 import { useQuery } from "@tanstack/react-query"
 import userInformations from "../services/GetUserProfile"
+import { getCookie } from "../utils/cookie"
 
 const Router =()=> {
     const {data , isLoading , error}= useQuery({queryKey:["profile"],queryFn:userInformations});
 
-    console.log({data , isLoading , error});
-
+if(isLoading) return <h1>loading</h1>;
+console.log(data.data.role);
     return(
         <Routes>
             <Route index element={<HomePage/>}/>
-            <Route path="/auth" element={<AuthPage/>}/>
-            <Route path="/dashbord" element={<DashbordPage/>}/>
-            <Route path="/admin" element={<AdminPage/>}/>
+            <Route path="/dashbord" element={data ? <DashbordPage/> : <Navigate to="/auth"/>}/>
+            <Route path="/auth" element={data?<DashbordPage/>:<Navigate to="/auth"/>}/>
+            <Route path="/admin" element={data && data.data.role==="ADMIN"?<AdminPage/> : <Navigate to="/"/> }/>
             <Route path="/*" element={<NotFound/>}/>
         </Routes>
     )

@@ -1,13 +1,14 @@
 import React from 'react';
 // toast notification
 import notify from '../utils/ToastNotify';
-import { ToastContainer} from 'react-toastify';
+
 // services
 import { CheckOTP } from '../services/AuthHandler';
 import { setCookie } from '../utils/cookie';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verificationCode}) => {
-
+    const navigate=useNavigate();
     const submitHandler=async (e)=>{
         const RegexTest=/^\d{5}$/;
         e.preventDefault()
@@ -18,7 +19,8 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
         const {response,error}=await CheckOTP(mobileNumber,verificationCode);
         if(response){
            notify("ورود با موفقیت انجام شد","success")
-           setCookie(response.data);
+           setCookie(response?.data);
+           navigate("/")
            
         }
         if(error){
@@ -43,7 +45,6 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
         <button type='submit' className='button'> ثبت کد تایید</button>
         <button onClick={()=>setAuthStep(1)} className='button'> تغییر شماره موبایل</button>
     </form>
-    <ToastContainer/>
     </>
     );
 };

@@ -5,7 +5,7 @@ import SendOTPForm from '../components/SendOTPForm.jsx';
 
 
 const AuthPage= () => {
-    const[authStep,setAuthStep]=useState(2);
+    const[authStep,setAuthStep]=useState(1);
     const[mobileNumber,setMobileNumber]=useState(null);
     const[verificationCode,setVerificationCode]=useState(null);
 
