@@ -1,0 +1,49 @@
+@import "./assets/Fonts/fonts.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base { 
+  html {
+    font-family: "Vazir"; 
+    width: 100svw;
+    height: 100svh;
+  }
+
+
+
+}
+@layer utilities{
+  .button{
+    padding-inline:20px;
+    box-shadow: 0 0 30px #fff , 0 0 20px #ffffff , inset  0 0 5px #fff;
+    background: #fff;
+    border-radius: 30px;
+    /* lightOrange: #d5532057; */
+
+    padding: 5px 10px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+  .button:hover{
+   filter: contrast(1.5);
+   scale: 110%;
+  }
+
+  .input{
+    padding-inline:20px;
+    box-shadow: 0 0 10px #fff , 0 0 20px #fff , inset  0 0 5px #fff;
+    border-radius: 30px;
+    padding: 5px 10px;
+    direction: ltr;
+    color: black;
+  }
+  .input:focus{
+    outline: none;
+  }
+
+}
