@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+// react query stuffs
+import { useMutation } from '@tanstack/react-query';
+// services
+import { addToCategory } from '../services/Admin';
+// utils
+import notify from '../utils/ToastNotify';
+import { ToastContainer } from 'react-toastify';
 
 const CategoryForm = () => {
     const [form,setForm]=useState({
@@ -7,14 +14,25 @@ const CategoryForm = () => {
         icon:"",
     })
 
+    const{ mutate, isPending , error, data,isError}=useMutation({ mutationFn:addToCategory});
+
+
+
     const changeHandler=(e)=>{
+
         setForm({...form,[e.target.name]:e.target.value})
     }
 
     const submitHandler=(e)=>{
         e.preventDefault();
-        console.log(form);
+        if(!form.name || !form.slug || !form.icon ) {
+            notify("لطفا تمام فیلد هارو وارد کنید","error");
+            return
+        }
+        mutate(form)
     }
+    
+    { data?.status === 201 && notify("دسته بندی با موفقیت افزوده شد","success")}
     return (
         <form 
             onChange={changeHandler} 
@@ -30,7 +48,8 @@ const CategoryForm = () => {
             <label className='formLabel' htmlFor="icon">آیکن</label>
             <input className='input' type="text" name='icon' id='icon' />
 
-            <button className='Darkbutton w-2/3' type='submit'>ایجاد</button>
+            <button disabled={isPending} className='Darkbutton w-2/3' type='submit'>ایجاد</button>
+            <ToastContainer/>
         </form>
     );
 };
