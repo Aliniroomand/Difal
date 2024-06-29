@@ -19,7 +19,7 @@ if(isLoading) return <Loader/>;
         <Routes>
             <Route index element={<HomePage/>}/>
             <Route path="/dashbord" element={data ? <DashbordPage/> : <Navigate to="/auth"/>}/>
-            <Route path="/auth" element={data?<DashbordPage/>:<Navigate to="/auth"/>}/>
+            <Route path="/auth" element={data ?<Navigate to="/dashbord"/> : <AuthPage/>}/>
             <Route path="/admin" element={data && data.data.role==="ADMIN"?<AdminPage/> : <Navigate to="/"/> }/>
             <Route path="/*" element={<NotFound/>}/>
         </Routes>

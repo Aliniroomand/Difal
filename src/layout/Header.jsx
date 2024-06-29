@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <header className='fixed z-50 flex flex-row w-svw bg-lightOrange px-5 h-[10svh]'>
+        <header className='fixed z-50 flex flex-row w-svw bg-lightOrange px-5 h-[10svh] text-sm items-center'>
             <section className='flex flex-row w-1/2 items-center justify-start h-[10svh] gap-10'>
                 <Link className='' to="/">
-                    <img className='w-[40px]' src={divarLogo} alt="divarLogo" />
+                    <img className='h-[10svh] ' src={divarLogo} alt="divarLogo" />
                 </Link>
                 <section className='flex flex-row items-center justify-start'>
                     <img className='w-[30px]' src={location} alt="location" />
