@@ -13,6 +13,15 @@ export default {
       },
       boxShadow:{
         "3xl":"0 0px 50px -12px rgb(0 0 0 / 0.75)",
+      },
+      animation:{
+        'spin-slow': 'spin 1.5s linear infinite',
+      },
+      dropShadow:{
+        '4xl': [
+          '0 0 5px rgba(0, 0, 0, 1)',
+          '0 0 5px rgba(0, 0, 0, 1)'
+        ]
       }
 
     },

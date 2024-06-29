@@ -6,6 +6,7 @@ import notify from '../utils/ToastNotify';
 import { CheckOTP } from '../services/AuthHandler';
 import { setCookie } from '../utils/cookie';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verificationCode}) => {
     const navigate=useNavigate();
@@ -31,7 +32,7 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
 
     return (
         <>
-    <form onSubmit={submitHandler} className='relative grid place-items-center w-1/5 h-[50svh] top-[10vh] right-[40%] shadow-3xl rounded-3xl text-center bg-lightOrange'   >
+    <form onSubmit={submitHandler} className='form'   >
         <h1 className=' text-3xl'>ورود کد تایید</h1>
         <p className=' text-sm'>کد تایید پنج رقمی ارسال شده<br/>به شماره {mobileNumber} را وارد نمایید</p>
         <input 
@@ -45,6 +46,8 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
         <button type='submit' className='button'> ثبت کد تایید</button>
         <button onClick={()=>setAuthStep(1)} className='button'> تغییر شماره موبایل</button>
     </form>
+    <ToastContainer/>
+
     </>
     );
 };

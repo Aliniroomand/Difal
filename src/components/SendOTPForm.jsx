@@ -28,7 +28,7 @@ const SendOTPForm= ({setAuthStep,setMobileNumber,mobileNumber}) => {
         
     }
     return (
-        <form onSubmit={submitHandler} className='relative grid place-items-center w-1/5 h-[50svh] top-[10vh] right-[40%] shadow-3xl rounded-3xl text-center bg-lightOrange'  >
+        <form onSubmit={submitHandler} className='form'  >
             <h1 className=' text-2xl' >ورود از طریق شماره موبایل</h1>
             <p className=' text-sm'>جهت ورود شماره موبایل خودتون رو وارد کنید</p>
             <input 

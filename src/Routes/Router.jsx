@@ -9,12 +9,12 @@ import NotFound from "../pages/NotFound"
 import { useQuery } from "@tanstack/react-query"
 import userInformations from "../services/GetUserProfile"
 import { getCookie } from "../utils/cookie"
+import Loader from "../modules/Loader"
 
 const Router =()=> {
     const {data , isLoading , error}= useQuery({queryKey:["profile"],queryFn:userInformations});
 
-if(isLoading) return <h1>loading</h1>;
-console.log(data.data.role);
+if(isLoading) return <Loader/>;
     return(
         <Routes>
             <Route index element={<HomePage/>}/>

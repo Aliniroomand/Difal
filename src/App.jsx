@@ -5,14 +5,16 @@ import Router from './Routes/Router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import defaultOptions from './configs/QueryConfigs'
 import { ToastContainer } from 'react-toastify'
+import Layout from './layout/Layout'
 
 function App() {
 const queryClient=new QueryClient({defaultOptions})
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Router/>
-    <ToastContainer/>
+        <Layout>
+          <Router/>
+        </Layout>
       </BrowserRouter>
     </QueryClientProvider>
   )

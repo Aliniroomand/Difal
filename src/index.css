@@ -10,7 +10,7 @@
   html {
     font-family: "Vazir"; 
     width: 100svw;
-    height: 100svh;
+    height:100svh;
   }
 
 
@@ -22,21 +22,29 @@
     box-shadow: 0 0 30px #fff , 0 0 20px #ffffff , inset  0 0 5px #fff;
     background: #fff;
     border-radius: 30px;
-    /* lightOrange: #d5532057; */
-
     padding: 5px 10px;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 200ms;
   }
-  .button:hover{
+  .button:hover,.Darkbutton:hover{
    filter: contrast(1.5);
    scale: 110%;
   }
-
+  .Darkbutton{
+    padding-inline:20px;
+    box-shadow: 0 0 10px #000 , 0 0 20px #000000 , inset 0 0 5px #000;
+    background: #d5532057;
+    border-radius: 30px;
+    padding: 5px 10px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+    margin-top: 20px;
+  }
   .input{
     padding-inline:20px;
-    box-shadow: 0 0 10px #fff , 0 0 20px #fff , inset  0 0 5px #fff;
+    box-shadow: 0 0 5px #000 , 0 0 10px #000000 , inset 0 0 5px #000;
     border-radius: 30px;
     padding: 5px 10px;
     direction: ltr;
@@ -45,5 +53,32 @@
   .input:focus{
     outline: none;
   }
+  .form{
+    position: relative; 
+    display: grid;
+    place-items: center;
+    width: 20%;
+    height:50svh;
+    padding: 20px 0 30px;
+    top:10svh;
+    right: 40%;
+    box-shadow: 0 0 30px #000 , 0 0 20px #000000 , inset 0 0 5px #000;
+    border-radius: 1.5rem;
+    text-align: center;
+    background: #d5532057;
+  }
+  .formLabel{
+    color: #000000;
+    text-shadow: 0 0 5px #fff;
+  }
+}
 
+@media (width <= 1024px){
+  .form{
+    width: 70%;
+    right:15%
+  }
+  .input{
+    width: 60%;
+  }
 }
