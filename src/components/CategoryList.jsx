@@ -21,7 +21,7 @@ const CategoryList = () => {
         <article>
             {
                 data.data.map(data=>
-                    <section key={data._id}>
+                    <section className=' ' key={data._id}>
                         <img src={`${data.icon}.svg`} alt={data.icon} />
                         <h5>نام :{data.name}</h5>
                         <p>اسلاگ :{data.slug}</p>
