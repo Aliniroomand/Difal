@@ -2,7 +2,6 @@ import React from 'react';
 // components
 import CategoryForm from '../components/CategoryForm';
 import CategoryList from '../components/CategoryList';
-// react query and its FNs
 
 const AdminPage = () => {
     return (

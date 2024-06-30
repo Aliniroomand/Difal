@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // react query stuffs
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 // services
 import { addToCategory } from '../services/Admin';
 // utils
@@ -8,13 +8,14 @@ import notify from '../utils/ToastNotify';
 import { ToastContainer } from 'react-toastify';
 
 const CategoryForm = () => {
+    const queryClient=useQueryClient()
     const [form,setForm]=useState({
         name:"",
         slug:"",
         icon:"",
     })
 
-    const{ mutate, isPending , error, data,isError}=useMutation({ mutationFn:addToCategory});
+    const{ mutate, isPending , error, data,isError}=useMutation({ mutationFn:addToCategory,onSuccess :()=>queryClient.invalidateQueries("category-list")});
 
 
 
@@ -29,18 +30,19 @@ const CategoryForm = () => {
             notify("لطفا تمام فیلد هارو وارد کنید","error");
             return
         }
-        mutate(form)
+        mutate(form);
+            return
     }
     
-    { data?.status === 201 && notify("دسته بندی با موفقیت افزوده شد","success")}
     return (
         <form 
-            onChange={changeHandler} 
-            onSubmit={submitHandler}
-            className='form'
+        onChange={changeHandler} 
+        onSubmit={submitHandler}
+        className='form'
         >
-            <label className='formLabel' htmlFor="name">اسم دسته بندی</label>
-            <input className='input' type="text" id='name' name='name' />
+            { (data?.status === 201) && <h3>دسته بندی با موفقیت افزوده شد</h3>}
+            <label className='formLabel'htmlFor="name">اسم دسته بندی</label>
+            <input className='input' defaultValue="" type="text" id='name' name='name' />
 
             <label className='formLabel' htmlFor="slug">اسلاگ</label>
             <input className='input' type="text" name='slug' id='slug' />
