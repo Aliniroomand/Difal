@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 
 const ConfirmationDialog = ({
     dialogText,
-    ShowingQuestion,
-    HandleConfirmDelete,
-    HandleCancelDelete
+    showingQuestion,
+    handleCancelDelete,
+    handleConfirmDelete
 }) => {
 
 
 
     return (
         <>
-        {ShowingQuestion &&
+        {showingQuestion &&
             <article>
             <p>{dialogText}</p>
-            <button onClick={HandleConfirmDelete}>بلی</button>
-            <button onClick={HandleCancelDelete}>خیر</button>
+            <button onClick={handleConfirmDelete}>بلی</button>
+            <button onClick={handleCancelDelete}>خیر</button>
             </article>
         }
         </>
