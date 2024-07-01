@@ -12,11 +12,11 @@ const ConfirmationDialog = ({
     return (
         <>
         {showingQuestion &&
-            <article className=' fixed h-1/5 top-[40%]   z-50 w-1/3 right-1/3 grid place-items-center bg-lightOrange rounded-full  shadow-lg shadow-red-900 backdrop-blur-md'>
+            <article className='fixed px-4 w-4/5 h-1/5  right-[10%]  top-[40%] z-50 grid place-items-center bg-lightOrange rounded-xl  shadow-2xl backdrop-blur-md text-center'>
             <p>{dialogText}</p>
             <section className='w-full flex items-center justify-around'>
-                <button className='Darkbutton w-1/5' onClick={handleConfirmDelete}>بلی</button>
-                <button className='Darkbutton w-1/5' onClick={handleCancelDelete}>خیر</button>
+                <button className='Darkbutton w-2/5' onClick={handleConfirmDelete}>بلی</button>
+                <button className='Darkbutton w-2/5' onClick={handleCancelDelete}>خیر</button>
             </section>
             </article>
         }

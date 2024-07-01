@@ -40,7 +40,9 @@ const CategoryForm = () => {
         onSubmit={submitHandler}
         className='form'
         >
-            { (data?.status === 201) && <h3>دسته بندی با موفقیت افزوده شد</h3>}
+            { (data?.status === 201) && <h3 className='bg-red-700 px-6 rounded-2xl text-red-100'>دسته بندی با موفقیت افزوده شد</h3>}
+            <h1 className='text-xl'>افزودن دسته بندی</h1>
+            {isPending&& <h1>در حال افزودن دسته بندی</h1>}
             <label className='formLabel'htmlFor="name">اسم دسته بندی</label>
             <input className='input' defaultValue="" type="text" id='name' name='name' />
 
@@ -50,7 +52,7 @@ const CategoryForm = () => {
             <label className='formLabel' htmlFor="icon">آیکن</label>
             <input className='input' type="text" name='icon' id='icon' />
 
-            <button disabled={isPending} className='Darkbutton w-2/3' type='submit'>ایجاد</button>
+            <button disabled={isPending} className='Darkbutton w-2/3 mt-6' type='submit'>ایجاد</button>
             <ToastContainer/>
         </form>
     );

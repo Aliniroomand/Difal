@@ -9,7 +9,8 @@ export default {
       colors:{
         lightBrown:"#c9a07e",
         lightOrange: "#d5532057",
-        lightBlue:"#87ceeb"
+        lightBlue:"#87ceeb",
+        darkRed:"#d02727",
       },
       boxShadow:{
         "3xl":"0 0px 50px -12px rgb(0 0 0 / 0.75)",

@@ -18,14 +18,19 @@ const CategoryList = () => {
         if(isLoading) return <Loader text={"loading"}/>;
         if(isError)return notify(`${error.message}`,"error")
     return (
-        <article>
-            {
+        <article className=' '> 
+            <h1 className='relative text-center bg-darkRed text-red-100 w-[90%] right-[5%] rounded-2xl  '>دسته بندی ها</h1>
+            {   
                 data.data.map(data=>
-                    <section className=' ' key={data._id}>
-                        <img src={`${data.icon}.svg`} alt={data.icon} />
-                        <h5>نام :{data.name}</h5>
-                        <p>اسلاگ :{data.slug}</p>
-                        <DeleteCategoris categoryId={data._id} />
+                    <section className=' relative flex flex-row items-center justify-evenly border-red-200 border-[1.5px] text-sm px-2  w-[90%] right-[5%] rounded-xl' key={data._id}>
+                        <section className='w-1/2 flex flex-row items-stretch py-4' >
+                            <img className='h-[1.8cap]' src={`${data.icon}.svg`} alt={data.icon} />
+                            <h5>{data.name}</h5>
+                        </section>
+                        <section className='flex flex-row items-center justify-between w-1/2'>
+                            <p>slug: {data.slug}</p>
+                            <DeleteCategoris categoryId={data._id} />
+                        </section>
                     </section>
                 )
             }
