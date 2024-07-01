@@ -38,7 +38,7 @@ const CategoryForm = () => {
         <form 
         onChange={changeHandler} 
         onSubmit={submitHandler}
-        className='form'
+        className='form h-[20rem] backdrop-blur-sm'
         >
             { (data?.status === 201) && <h3 className='bg-red-700 px-6 rounded-2xl text-red-100'>دسته بندی با موفقیت افزوده شد</h3>}
             <h1 className='text-xl'>افزودن دسته بندی</h1>
