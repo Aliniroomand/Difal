@@ -2,7 +2,8 @@ import axios from "axios";
 // cookies Handler
 import { getCookie, setCookie } from "../utils/cookie";
 import { GetNewToken } from "../services/GetNewToken";
-import notify from "../utils/ToastNotify";
+// toast
+import toast from "react-hot-toast";
 
 const api = axios.create({
     baseURL:import.meta.env.VITE_BASE_URL,
@@ -40,7 +41,7 @@ api.interceptors.response.use(
              return api(originalRequest)
          }
          if(error.response.status === 409){
-            notify("اطلاعات دسته بندی از قبل وجود دارد،لطفا با مقادیر جدید مجددا امتحان نمایید","error")
+            toast.error("اطلاعات دسته بندی از قبل وجود دارد،لطفا با مقادیر جدید مجددا امتحان نمایید")
             return
          }
     }

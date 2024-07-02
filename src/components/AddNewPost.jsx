@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 // queies
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 // api services
 import { getCategory } from '../services/Admin';
-import axios from 'axios';
-import { getCookie } from '../utils/cookie';
+import { AddNewPostFunction } from '../services/Dashbord';
 
 
 const AddNewPost = () => {
 const {data,isLoading,isError}=useQuery({queryKey:["category-list"],queryFn:getCategory})
+
+const {mutate,isPending,error}=useMutation({mutationFn:AddNewPostFunction});
+
 
 const [form,setForm]=useState({
     title:"",
@@ -36,14 +38,6 @@ const addHandler=(e)=>{
     for(let i in form){
         formData.append(i,form[i]);
     }
-    const accessToken=getCookie("accessToken")
-    axios.post(`${import.meta.env.VITE_BASE_URL}/post/create`,formData,
-        {headers:{
-            "Content-Type":"multiplepart/form-data",
-            Authorization:`bearer ${accessToken}`}
-        }).then((res)=>console.log(res))
-        .catch(err=>console.log(err))
-
         setForm({
             title:"",
             content:"",
@@ -113,5 +107,3 @@ export default AddNewPost;
 
 
 
-
-// add post رو مثلadd category با use mutation پیاده کن

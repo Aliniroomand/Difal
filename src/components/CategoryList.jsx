@@ -3,8 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 // services & utils
 import { getCategory } from '../services/Admin';
 import Loader from '../modules/Loader';
-import notify from '../utils/ToastNotify';
 import DeleteCategoris from './DeleteCategoris';
+// toast
+import toast from 'react-hot-toast';
 
 const CategoryList = () => {
     
@@ -16,14 +17,14 @@ const CategoryList = () => {
             
 
         if(isLoading) return <Loader text={"loading"}/>;
-        if(isError)return notify(`${error.message}`,"error")
+        if(isError)return toast.error(`${error.message}`)
     return (
-        <article > 
+        <article className=' relative flex flex-col items-start justify-between border-red-200 border-[1.5px] text-sm px-2  w-[90%] right-[5%] rounded-xl  backdrop-blur-sm bg-white bg-opacity-40'> 
             <h1 className='relative text-center bg-darkRed text-white w-[90%] right-[5%] rounded-2xl '>دسته بندی ها</h1>
             {   
                 data.data.map(data=>
-                    <section className=' relative flex flex-row items-center justify-evenly border-red-200 border-[1.5px] text-sm px-2  w-[90%] right-[5%] rounded-xl  backdrop-blur-sm bg-white bg-opacity-40' key={data._id}>
-                        <section className='w-1/2 flex flex-row items-stretch py-4' >
+                    <section className='flex flex-row items-center justify-between w-full' key={data._id}>
+                        <section className='w-1/2  flex flex-row items-stretch py-4' >
                             <img className=' h-[1.8cap]' src={`${data.icon}.svg`} alt={data.icon} />
                             <h5>{data.name}</h5>
                         </section>

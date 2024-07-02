@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 // react query 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteCategory } from '../services/Admin';
-// toast notify and utils
-import notify from '../utils/ToastNotify';
+// toast toast and utils
 import Loader from '../modules/Loader';
 import ConfirmationDialog from '../modules/ConfirmationDialog';
-
+import toast from 'react-hot-toast';
 
 const DeleteCategoris = ({categoryId}) => {
     const queryClient = useQueryClient();
@@ -21,7 +20,7 @@ const DeleteCategoris = ({categoryId}) => {
             queryClient.invalidateQueries("category-list");
         },
         onError: (error) => {
-        notify(`${error.message}`, "error");
+        toast.error(`${error.message}`);
     }
     });
 

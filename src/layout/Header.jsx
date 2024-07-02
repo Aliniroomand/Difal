@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <header className='fixed z-50 flex flex-row w-svw bg-white b px-5 h-[10svh] text-xs  items-center text-center backdrop-blur-sm bg-white bg-opacity-40 rounded-b-2xl truncate '>
+        <header className=' z-50 flex flex-row max-w-[98svw] my-auto  bg-white h-[10svh] text-xs  items-center text-center backdrop-blur-sm bg-white bg-opacity-40 rounded-b-2xl  '>
             <section className='fixed z-[51] flex flex-row w-1/2 left-1/2 items-center justify-start h-[10svh] gap-10 px-5'>
                 <Link to="/">
                     <img className='sm:h-[10svh] h-[5svh]' src="divar.svg" alt="divarLogo" />

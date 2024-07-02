@@ -1,12 +1,11 @@
 import React from 'react';
 // toast notification
-import notify from '../utils/ToastNotify';
+import toast from 'react-hot-toast';
 
 // services
 import { CheckOTP } from '../services/AuthHandler';
 import { setCookie } from '../utils/cookie';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verificationCode}) => {
     const navigate=useNavigate();
@@ -14,12 +13,12 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
         const RegexTest=/^\d{5}$/;
         e.preventDefault()
         if(!RegexTest.test(verificationCode)){
-            notify("کد تایید حتما باید پنج رقمی باشد","error")
+            toast.error("کد تایید حتما باید پنج رقمی باشد")
             return
         }
         const {response,error}=await CheckOTP(mobileNumber,verificationCode);
         if(response){
-           notify("ورود با موفقیت انجام شد","success")
+           toast.success("ورود با موفقیت انجام شد")
            setCookie(response?.data);
            navigate("/")
            
@@ -46,7 +45,6 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
         <button type='submit' className='button'> ثبت کد تایید</button>
         <button onClick={()=>setAuthStep(1)} className='button'> تغییر شماره موبایل</button>
     </form>
-    <ToastContainer/>
 
     </>
     );

@@ -1,18 +1,16 @@
 import React from 'react';
-// toast notification
- 
-import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import notify from '../utils/ToastNotify';
+
 // services
 import { SendOTP } from '../services/AuthHandler';
+// toast notification
+import toast from 'react-hot-toast';
 
 const SendOTPForm= ({setAuthStep,setMobileNumber,mobileNumber}) => {
     const submitHandler=async (e)=>{
         e.preventDefault();
         const regexTest= /^09\d{9}$/;
         if(!regexTest.test(mobileNumber)){
-            notify("لطفا شماره رو به شکل صحیح وارد نمایید","error");
+            toast.error("لطفا شماره رو به شکل صحیح وارد نمایید");
         return        
     }
 
@@ -22,7 +20,7 @@ const SendOTPForm= ({setAuthStep,setMobileNumber,mobileNumber}) => {
             setAuthStep(2)
         }
         if(error){
-            notify("مشکلی پیش آمده لطفا کمی صبر کنید و دوباره امتحان کنید","error")
+            toast.error("مشکلی پیش آمده لطفا کمی صبر کنید و دوباره امتحان کنید","error")
         }
         
         
@@ -42,7 +40,6 @@ const SendOTPForm= ({setAuthStep,setMobileNumber,mobileNumber}) => {
             <button className='button '>
                 ارسال کد تأیید 
             </button>
-            <ToastContainer />
         </form>
 
     );
