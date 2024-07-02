@@ -1,6 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+// queies
+import { useQuery } from '@tanstack/react-query';
+// api services
 import { getCategory } from '../services/Admin';
+import axios from 'axios';
+import { getCookie } from '../utils/cookie';
+
 
 const AddNewPost = () => {
 const {data,isLoading,isError}=useQuery({queryKey:["category-list"],queryFn:getCategory})
@@ -24,15 +29,36 @@ const changeHandler=(e)=>{
 
 }
 
-const submitHandler=(e)=>{
+const addHandler=(e)=>{
     e.preventDefault();
-    console.log(form);
+    const formData=new FormData();
+
+    for(let i in form){
+        formData.append(i,form[i]);
+    }
+    const accessToken=getCookie("accessToken")
+    axios.post(`${import.meta.env.VITE_BASE_URL}/post/create`,formData,
+        {headers:{
+            "Content-Type":"multiplepart/form-data",
+            Authorization:`bearer ${accessToken}`}
+        }).then((res)=>console.log(res))
+        .catch(err=>console.log(err))
+
+        setForm({
+            title:"",
+            content:"",
+            category:"",
+            city:"",
+            price:null,
+            images:null,
+        })
+        
 }
 
     return (
         <form         
             className='form h-[30rem] backdrop-blur-sm'
-            onSubmit={submitHandler} 
+            onSubmit={addHandler} 
             onChange={changeHandler}
         >
             <h1 className='relative text-center bg-white text-xl px-6 bg-opacity-40 rounded-2xl '>افزودن آگهی</h1>
@@ -48,7 +74,7 @@ const submitHandler=(e)=>{
             <textarea className='input h-[100px]' name="content" id="content"/>
 
             <label className='formLabel text-sm' htmlFor="price">قیمت</label>
-            <input className='input' type="text"
+            <input className='input' type="number"
                     name='price' 
                     id='price'
                     placeholder='قیمت به تومان'
@@ -62,11 +88,11 @@ const submitHandler=(e)=>{
             />
 
             <label className='formLabel text-sm' htmlFor="category">دسته بندی</label>
-            <select className="input w-3/4" name="category" id="category">
+            <select className="input w-3/4 rounded-xl" name="category" id="category">
                 {isLoading&& <option className="input w-3/4">درحال بارگذاری...</option>}
                 {isError&& <option className="input w-3/4">متاسفانه با مشکل مواجه شدیم... دوباره امتحان کنید</option>}
                 {data?.data.map((i)=>
-                <option className="input w-3/4" value={i._id} key={i._id}>{i.name}</option>
+                <option className="input w-3/4 " value={i._id} key={i._id}>{i.name}</option>
             )}
             </select>
             
@@ -83,3 +109,9 @@ const submitHandler=(e)=>{
 };
 
 export default AddNewPost;
+
+
+
+
+
+// add post رو مثلadd category با use mutation پیاده کن
