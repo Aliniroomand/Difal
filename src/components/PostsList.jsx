@@ -4,22 +4,25 @@ import React from 'react';
 import { getMyPosts } from '../services/Dashbord';
 import toast from 'react-hot-toast';
 import Loader from '../modules/Loader';
+import axios from 'axios';
+import { getCookie } from '../utils/cookie';
+import api from '../configs/apiConfigs';
 
 const PostsList = () => {
     const baseURL=import.meta.env.VITE_BASE_URL;
-
     const{isLoading,data,error}=useQuery({queryKey:["my-posts-list"],queryFn:getMyPosts});
     
     if(error){return toast.error(`دریافت پست های شما با خطا مواجه شد ، دوباره امتحان کنید`)}
     if(isLoading)return <Loader text={"در حال بارگذاری لیست"}/>
-    // console.log(data);
+
+    // console.log(data.data.posts[0].images);
 
     return (
         <article>
-            {/* {
+            {
                 data.data.posts.map(post=>
                     <section key={post._id}>
-                        <img src={`${baseURL}${post.images[0]}`} alt="post image" />
+                        {/* <img src={`${import.meta.env.VITE_BASE_URL}${post[0].images}`} /> */}
                         <section>
                             <p></p>
                             <span></span>
@@ -29,7 +32,7 @@ const PostsList = () => {
                         </section>
                     </section>
                 )
-            } */}
+            }
         </article>
     );
 };

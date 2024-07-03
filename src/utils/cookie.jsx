@@ -7,5 +7,8 @@ const getCookie= (cookieName)=>{
     return document.cookie.split(";").find(i=>i.trim().split("=")[0]===cookieName)?.split("=")[1];
     
 }
+const setUserINFsInCookie=(userINF)=>{
+    document.cookie=`userInformations=${JSON.stringify(userINF)};max-age=${1*24*60*60}`
+}
 
-export {setCookie,getCookie}
+export {setCookie,getCookie,setUserINFsInCookie}

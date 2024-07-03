@@ -41,21 +41,17 @@ const addHandler=(e)=>{
     if(!form.title || !form.content || form.amount===null || !form.city ){
         return toast.error("لطفا تمامی مقادیر را وارد کنید")
     }
-    for(let i in form){
-        formData.append(i,form[i]);
-        
-    }
-    
-    const accessToken=getCookie("accessToken");
 
-    axios.post(`${import.meta.env.VITE_BASE_URL}/post/create`,formData,
-        {headers:{
-            "Content-Type": "multipart/form-data",
-            Authorization:`bearer ${accessToken}`}
-        }).then(res=>console.log(res))
-        .catch(err=>toast.error(`درخواست با خطا مواجه شد ، دلیل خطا ${err}`))
-
-    console.log(form);
+    for (let key in form) {
+        if (key === "images") {
+          for (let i = 0; i < form.images.length; i++) {
+            formData.append("images", form.images[i]);
+          }
+        } else {
+          formData.append(key, form[key]);
+        }
+      }
+    AddNewPostFunction(formData)
 }
 
 
@@ -93,8 +89,8 @@ const addHandler=(e)=>{
 
             <label className='formLabel text-sm' htmlFor="category">دسته بندی</label>
             <select className="input w-3/4 rounded-xl" name="category" id="category">
-                {/* {isLoading&& <option className="input w-3/4">درحال بارگذاری...</option>} */}
-                {/* {isError&& <option className="input w-3/4">متاسفانه با مشکل مواجه شدیم... دوباره امتحان کنید</option>} */}
+                {isLoading&& <option className="input w-3/4">درحال بارگذاری...</option>}
+                {isError&& <option className="input w-3/4">متاسفانه با مشکل مواجه شدیم... دوباره امتحان کنید</option>}
                 {data?.data.map((i)=>
                 <option className="input w-3/4 " value={i._id} key={i._id}>{i.name}</option>
             )}

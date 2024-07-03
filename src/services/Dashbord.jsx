@@ -10,7 +10,7 @@ const AddNewPostFunction=(formData)=>{
             {headers:{
                 "Content-Type":"multipart/form-data",
                 Authorization:`bearer ${accessToken}`}
-            }).then(res=>console.log(res))
+            }).then(res=>(res.status===200)&&toast.success("دسته بندی با موفقیت افزوده شد"))
             .catch(err=>toast.error(`درخواست با خطا مواجه شد ، دلیل خطا ${err}`))
 
 }
