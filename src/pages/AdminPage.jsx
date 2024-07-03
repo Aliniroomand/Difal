@@ -5,7 +5,7 @@ import CategoryList from '../components/CategoryList';
 
 const AdminPage = () => {
     return (
-        <div>
+        <div >
             AdminPage
         <CategoryList/>
         <CategoryForm/>

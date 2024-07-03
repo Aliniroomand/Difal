@@ -10,10 +10,10 @@ const Layout = ({children}) => {
         <>
         <img className='fixed z-0 w-[1500px] h-[1500px] ' src={mainBG} alt="mainBG" />
         <Header/>
-        <main className=' min-h-svh pt-[10svh] top-0 w-svw '>
+        <main className='relative pt-[1svh] top-0 '>
             {children}
         </main>
-        {/* <Footer/> */}
+        <Footer/>
         </>
     );
 };

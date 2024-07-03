@@ -4,13 +4,14 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 // api services
 import { getCategory } from '../services/Admin';
 import { AddNewPostFunction } from '../services/Dashbord';
+import toast from 'react-hot-toast';
 
 
 const AddNewPost = () => {
 const {data,isLoading,isError}=useQuery({queryKey:["category-list"],queryFn:getCategory})
 
 const {mutate,isPending,error}=useMutation({mutationFn:AddNewPostFunction});
-
+// console.log({mutationData,isPending,error});
 
 const [form,setForm]=useState({
     title:"",
@@ -35,20 +36,17 @@ const addHandler=(e)=>{
     e.preventDefault();
     const formData=new FormData();
 
+    if(!form.title || !form.content || form.price===null || !form.city ){
+        return toast.error("لطفا تمامی مقادیر را وارد کنید")
+    }
     for(let i in form){
         formData.append(i,form[i]);
+            
+        }
+        mutate(formData)
     }
-        setForm({
-            title:"",
-            content:"",
-            category:"",
-            city:"",
-            price:null,
-            images:null,
-        })
+    
         
-}
-
     return (
         <form         
             className='form h-[30rem] backdrop-blur-sm'
