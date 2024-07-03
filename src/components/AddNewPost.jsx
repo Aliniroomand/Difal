@@ -5,12 +5,14 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getCategory } from '../services/Admin';
 import { AddNewPostFunction } from '../services/Dashbord';
 import toast from 'react-hot-toast';
+import axios from 'axios';
+import { getCookie } from '../utils/cookie';
 
 
 const AddNewPost = () => {
 const {data,isLoading,isError}=useQuery({queryKey:["category-list"],queryFn:getCategory})
 
-const {mutate,isPending,error}=useMutation({mutationFn:AddNewPostFunction});
+// const {mutate,isPending,error}=useMutation({mutationFn:AddNewPostFunction});
 // console.log({mutationData,isPending,error});
 
 const [form,setForm]=useState({
@@ -18,7 +20,7 @@ const [form,setForm]=useState({
     content:"",
     category:"",
     city:"",
-    price:null,
+    amount:null,
     images:null,
 })
 
@@ -27,26 +29,36 @@ const changeHandler=(e)=>{
     if(name !== "images"){
         setForm({...form,[name]:e.target.value})
     } else{
-        setForm({...form,[name]:e.target.files[0]})
+        setForm({...form,[name]:e.target.files})
     }
-
+    
 }
 
 const addHandler=(e)=>{
     e.preventDefault();
     const formData=new FormData();
-
-    if(!form.title || !form.content || form.price===null || !form.city ){
+    
+    if(!form.title || !form.content || form.amount===null || !form.city ){
         return toast.error("لطفا تمامی مقادیر را وارد کنید")
     }
     for(let i in form){
         formData.append(i,form[i]);
-            
-        }
-        mutate(formData)
+        
     }
     
-        
+    const accessToken=getCookie("accessToken");
+
+    axios.post(`${import.meta.env.VITE_BASE_URL}/post/create`,formData,
+        {headers:{
+            "Content-Type": "multipart/form-data",
+            Authorization:`bearer ${accessToken}`}
+        }).then(res=>console.log(res))
+        .catch(err=>toast.error(`درخواست با خطا مواجه شد ، دلیل خطا ${err}`))
+
+    console.log(form);
+}
+
+
     return (
         <form         
             className='form h-[30rem] backdrop-blur-sm'
@@ -65,10 +77,10 @@ const addHandler=(e)=>{
             <label className='formLabel text-sm' htmlFor="content">توضیحات درباره آگهی</label>
             <textarea className='input h-[100px]' name="content" id="content"/>
 
-            <label className='formLabel text-sm' htmlFor="price">قیمت</label>
+            <label className='formLabel text-sm' htmlFor="amount">قیمت</label>
             <input className='input' type="number"
-                    name='price' 
-                    id='price'
+                    name='amount' 
+                    id='amount'
                     placeholder='قیمت به تومان'
             />
 
@@ -81,8 +93,8 @@ const addHandler=(e)=>{
 
             <label className='formLabel text-sm' htmlFor="category">دسته بندی</label>
             <select className="input w-3/4 rounded-xl" name="category" id="category">
-                {isLoading&& <option className="input w-3/4">درحال بارگذاری...</option>}
-                {isError&& <option className="input w-3/4">متاسفانه با مشکل مواجه شدیم... دوباره امتحان کنید</option>}
+                {/* {isLoading&& <option className="input w-3/4">درحال بارگذاری...</option>} */}
+                {/* {isError&& <option className="input w-3/4">متاسفانه با مشکل مواجه شدیم... دوباره امتحان کنید</option>} */}
                 {data?.data.map((i)=>
                 <option className="input w-3/4 " value={i._id} key={i._id}>{i.name}</option>
             )}
