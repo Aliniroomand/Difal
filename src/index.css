@@ -80,6 +80,7 @@
     color: #000000;
     text-shadow: 0 0 5px #fff;
   }
+
 }
 
 @media (width <= 1024px){
@@ -90,4 +91,5 @@
   .input{
     width: 60%;
   }
+
 }
