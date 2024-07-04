@@ -17,4 +17,6 @@ const AddNewPostFunction=(formData)=>{
 
 const getMyPosts=()=>api.get("/post/my");
 
-export {AddNewPostFunction,getMyPosts}
+const deletePost=(id)=>api.delete(`/post/delete/${id}`)
+
+export {AddNewPostFunction,getMyPosts,deletePost}

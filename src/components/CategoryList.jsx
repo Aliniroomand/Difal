@@ -9,10 +9,8 @@ import toast from 'react-hot-toast';
 
 const CategoryList = () => {
     
-    const{data,isLoading,isError,error}=useQuery({queryKey:["category-list"],queryFn:getCategory},)
+    const{data,isLoading,isError,error}=useQuery({queryKey:["category-list"],queryFn:getCategory })
     
-
-
 
             
 

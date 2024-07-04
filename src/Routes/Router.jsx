@@ -15,12 +15,16 @@ import { getCookie } from "../utils/cookie"
 
 const Router =()=> {
     const userINFS=getCookie("userInformations");
-    const initialData = userINFS ? JSON.parse(userINFS) : null;
+    const accessToken=getCookie("accessToken")
+    const initialData = userINFS && JSON.parse(userINFS);
     
   const { data, isLoading, error } = useQuery({
             queryKey: ["profile"],
             queryFn: userInformations,
             initialData,
+            staleTime:Infinity,
+            cacheTime:Infinity,
+            enabled:!(!!accessToken),
           });
 
 if(isLoading) return <Loader/>;

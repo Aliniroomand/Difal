@@ -5,8 +5,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getCategory } from '../services/Admin';
 import { AddNewPostFunction } from '../services/Dashbord';
 import toast from 'react-hot-toast';
-import axios from 'axios';
-import { getCookie } from '../utils/cookie';
 
 
 const AddNewPost = () => {
