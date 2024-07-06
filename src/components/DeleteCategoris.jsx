@@ -43,9 +43,9 @@ const DeleteCategoris = ({categoryId}) => {
 
     return (
         <>
-            <button className='Darkbutton p-0 m-0 sm:text-sm text-xs bg-red-300' onClick={deleteHandler}>حذف </button>
+            <button className='Darkbutton p-0 m-0 sm:text-sm text-xs bg-lightOrange' onClick={deleteHandler}>حذف </button>
             { isPending &&
-            <section className=' ' >
+            <section className='grid place-items-center' >
                 <Loader text={"در حال حذف دسته بندی"}/>
                 <p>در حال حذف دسته بندی</p>
             </section>

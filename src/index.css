@@ -5,15 +5,21 @@
 @tailwind utilities;
 
 
-:root {
-  --scrollbar-width: 16px;
-}
+
 
 @layer base { 
+  :root {
+    --color-lightBrown: #c9a07e;
+    --color-darkBrown: #6d3100;
+    --color-lightOrange: #d5532057;
+    --color-lightBlue: #87ceeb;
+    --color-darkRed: #d02727;
+  }
   html {
     font-family: "Vazir"; 
     min-height:100svh;
   }
+
 
 
 
@@ -80,7 +86,53 @@
     color: #000000;
     text-shadow: 0 0 5px #fff;
   }
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
 
+  ::-webkit-scrollbar-track {
+    background: var(--color-lightOrange);
+    border-radius: 6px ;
+    border: 1px solid #00000066;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-darkBrown);
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-lightBrown);
+    border: 1px solid #000
+  }
+  .titles{
+    padding-inline:20px;
+    box-shadow: 0 0 5px #000 , 0 0 10px #000000 , inset 0 0 0px #000;
+    border-radius: 30px;
+    padding: 5px 10px;
+    position: relative;
+    background: var(--color-lightBrown);
+    text-align: center; 
+
+    width: 50%;
+    right: 25%;
+  }
+  .mainPageComponent{
+    position: relative;
+    height: fit-content;
+    right: 16rem;
+    width:calc(100svw - 18rem) ;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    row-gap: 30px;
+    column-gap:20px;
+  }
+  .maskForImages{
+    mask-border-source: url('./assets/images/images_mask.png');
+    mask-size:contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+  }
 }
 
 @media (width <= 1024px){

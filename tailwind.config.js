@@ -6,11 +6,12 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
-        lightBrown:"#c9a07e",
-        lightOrange: "#d5532057",
-        lightBlue:"#87ceeb",
-        darkRed:"#d02727",
+      colors: {
+        lightBrown: 'var(--color-lightBrown)',
+        darkBrown: 'var(--color-darkBrown)',
+        lightOrange: 'var(--color-lightOrange)',
+        lightBlue: 'var(--color-lightBlue)',
+        darkRed: 'var(--color-darkRed)',
       },
       boxShadow:{
         "3xl":"0 0px 50px -12px rgb(0 0 0 / 0.75)",

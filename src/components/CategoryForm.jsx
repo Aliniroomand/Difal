@@ -40,10 +40,10 @@ const CategoryForm = () => {
         className='form h-[20rem] backdrop-blur-sm'
         >
             { (data?.status === 201) && <h3 className='bg-red-700 px-6 rounded-2xl text-red-100'>دسته بندی با موفقیت افزوده شد</h3>}
+            {isPending&& <h1 className='bg-red-100 px-6 rounded-2xl text-red-700'>در حال افزودن دسته بندی</h1>}
 
             <h1 className='text-xl'>افزودن دسته بندی</h1>
 
-            {isPending&& <h1>در حال افزودن دسته بندی</h1>}
             
             <label className='formLabel'htmlFor="name">اسم دسته بندی</label>
             <input className='input' defaultValue="" type="text" id='name' name='name' />

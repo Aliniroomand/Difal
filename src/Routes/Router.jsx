@@ -11,29 +11,25 @@ import { useQuery } from "@tanstack/react-query"
 import {userInformations} from "../services/GetUserProfile"
 import Loader from "../modules/Loader"
 import { getCookie } from "../utils/cookie"
+import toast from "react-hot-toast"
 
 
 const Router =()=> {
-    const userINFS=getCookie("userInformations");
-    const accessToken=getCookie("accessToken")
-    const initialData = userINFS && JSON.parse(userINFS);
-    
-  const { data, isLoading, error } = useQuery({
-            queryKey: ["profile"],
-            queryFn: userInformations,
-            initialData,
-            staleTime:Infinity,
-            cacheTime:Infinity,
-            enabled:!(!!accessToken),
-          });
+    const { data, isLoading, error } = useQuery({
+        queryKey: ["profile"],
+        queryFn: userInformations,
+        staleTime:Infinity,
+        cacheTime:Infinity,
+      }) ;
 
 if(isLoading) return <Loader/>;
+if(error) return toast.error("مشکلی پیش آمده،دوباره امتحان کنید")
     return(
         <Routes>
             <Route index element={<HomePage/>}/>
             <Route path="/dashbord" element={data ? <DashbordPage/> : <Navigate to="/auth"/>}/>
             <Route path="/auth" element={data ?<Navigate to="/dashbord"/> : <AuthPage/>}/>
-            <Route path="/admin" element={data && data.role==="ADMIN"?<AdminPage/> : <Navigate to="/"/> }/>
+            <Route path="/admin" element={data && data.data.role==="ADMIN"?<AdminPage/> : <Navigate to="/"/> }/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     )

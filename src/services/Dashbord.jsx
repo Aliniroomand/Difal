@@ -10,13 +10,17 @@ const AddNewPostFunction=(formData)=>{
             {headers:{
                 "Content-Type":"multipart/form-data",
                 Authorization:`bearer ${accessToken}`}
-            }).then(res=>(res.status===200)&&toast.success("دسته بندی با موفقیت افزوده شد"))
+            }).then(res=>(res.status===200)&&toast.success("پست با موفقیت افزوده شد"))
             .catch(err=>toast.error(`درخواست با خطا مواجه شد ، دلیل خطا ${err}`))
 
 }
 
 const getMyPosts=()=>api.get("/post/my");
 
+const getAllPosts=()=>api.get("")
+
 const deletePost=(id)=>api.delete(`/post/delete/${id}`)
 
-export {AddNewPostFunction,getMyPosts,deletePost}
+
+
+export {AddNewPostFunction,getMyPosts,deletePost,getAllPosts}
