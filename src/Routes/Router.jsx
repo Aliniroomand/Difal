@@ -12,6 +12,7 @@ import {userInformations} from "../services/GetUserProfile"
 import Loader from "../modules/Loader"
 import { getCookie } from "../utils/cookie"
 import toast from "react-hot-toast"
+import ProductINFOS from "../pages/ProductINFOS"
 
 
 const Router =()=> {
@@ -30,6 +31,7 @@ if(error) return toast.error("مشکلی پیش آمده،دوباره امتح�
             <Route path="/dashbord" element={data ? <DashbordPage/> : <Navigate to="/auth"/>}/>
             <Route path="/auth" element={data ?<Navigate to="/dashbord"/> : <AuthPage/>}/>
             <Route path="/admin" element={data && data.data.role==="ADMIN"?<AdminPage/> : <Navigate to="/"/> }/>
+            <Route path="/product/:id" element={<ProductINFOS/>}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     )

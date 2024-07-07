@@ -107,19 +107,18 @@
   }
   .titles{
     padding-inline:20px;
-    box-shadow: 0 0 5px #000 , 0 0 10px #000000 , inset 0 0 0px #000;
+    box-shadow: 0 0 5px 2px #0000007b , inset 0 0 3px #fff;
     border-radius: 30px;
     padding: 5px 10px;
-    position: relative;
     background: var(--color-lightBrown);
     text-align: center; 
-
     width: 50%;
     right: 25%;
   }
   .mainPageComponent{
     position: relative;
     height: fit-content;
+    min-height: 71svh;
     right: 16rem;
     width:calc(100svw - 18rem) ;
     display: grid;

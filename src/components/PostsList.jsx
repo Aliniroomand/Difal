@@ -18,7 +18,7 @@ const PostsList = () => {
     console.log({isLoading,data,error});
     return (
         <article className=' relative flex flex-col items-start justify-between gap-2 border-red-200 border-[1.5px] text-sm px-2  w-[90%] right-[5%] rounded-xl  backdrop-blur-sm bg-white bg-opacity-40'>
-            <h1 className='titles text-sm '>لیست پست های من</h1>
+            <h1 className='titles absolute text-sm '>لیست پست های من</h1>
             {
                 data.data.posts.map(post=>
                     <section key={post._id} className='flex sm:flex-row flex-col items-center justify-between py-2 w-full  border-red-300 border-b-[1.5px]'>

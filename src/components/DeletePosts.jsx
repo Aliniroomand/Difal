@@ -43,7 +43,7 @@ const DeletePosts = ({postId}) => {
 
     return (
         <>
-            <button disabled={isPending} className='Darkbutton p-0 m-0 sm:text-sm text-xs bg-red-300' onClick={deleteHandler}>حذف </button>
+            <button disabled={isPending} className='Darkbutton p-0 m-0 sm:text-sm text-xs bg-lightOrange' onClick={deleteHandler}>حذف </button>
             { isPending &&
             <section className='relative flex flex-col justify-end items-center' >
                 <Loader />
