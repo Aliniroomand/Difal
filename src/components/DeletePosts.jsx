@@ -8,7 +8,7 @@ import ConfirmationDialog from '../modules/ConfirmationDialog';
 import toast from 'react-hot-toast';
 import { deletePost } from '../services/Dashbord';
 
-const DeletePosts = ({postId}) => {
+const DeletePosts = ({postId,post_title=""}) => {
     const queryClient = useQueryClient();
 
     const [showingQuestion, setShowingQuestion] = useState(false);
@@ -45,14 +45,14 @@ const DeletePosts = ({postId}) => {
         <>
             <button disabled={isPending} className='Darkbutton p-0 m-0 sm:text-sm text-xs bg-lightOrange' onClick={deleteHandler}>حذف </button>
             { isPending &&
-            <section className='relative flex flex-col justify-end items-center' >
-                <Loader />
-                <p>در حال حذف پست</p>
+            <section className='relative flex flex-col justify-end items-center w-full h-full left-0 bottom-0' >
+                <Loader className="absolute z-10" />
+                <p className='absolute z-20'>در حال حذف پست</p>
             </section>
             }
 
             <ConfirmationDialog
-                dialogText="آیا از بابت حذف پست مطمئن هستید؟" showingQuestion={showingQuestion} handleConfirmDelete={handleConfirmDelete}
+                dialogText={`آیا از بابت حذف پست ${post_title} مطمئن هستید؟`} showingQuestion={showingQuestion} handleConfirmDelete={handleConfirmDelete}
                 handleCancelDelete={handleCancelDelete}
             />
         </>

@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 // queies
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 // api services
 import { getCategory } from '../services/Admin';
-import { AddNewPostFunction } from '../services/Dashbord';
+import { AddNewPostFunction, getMyPosts } from '../services/Dashbord';
 import toast from 'react-hot-toast';
 
 
 const AddNewPost = () => {
+    const queryClient=useQueryClient(["my-posts-list"])
 const {data,isLoading,isError}=useQuery({queryKey:["category-list"],queryFn:getCategory})
 
-// const {mutate,isPending,error}=useMutation({mutationFn:AddNewPostFunction});
-// console.log({mutationData,isPending,error});
+
+
+const{mutate,isPending,isError:mutatedIsError}=useMutation({mutationFn:(formData)=>AddNewPostFunction(formData) , onSuccess:()=>queryClient.invalidateQueries(["my-posts-list"])})
+
+
 
 const [form,setForm]=useState({
     title:"",
@@ -36,7 +40,7 @@ const addHandler=(e)=>{
     e.preventDefault();
     const formData=new FormData();
     
-    if(!form.title || !form.content || form.amount===null || !form.city ){
+    if(!form.title || !form.content || form.amount===null || !form.city || !form.images.length ){
         return toast.error("لطفا تمامی مقادیر را وارد کنید")
     }
 
@@ -49,13 +53,16 @@ const addHandler=(e)=>{
           formData.append(key, form[key]);
         }
       }
-    AddNewPostFunction(formData)
+    // AddNewPostFunction(formData)
+    mutate(formData)
+
+    console.log(formData)
 }
 
 
     return (
         <form         
-            className='form h-[30rem] backdrop-blur-sm'
+            className='form h-[30rem] top-96 backdrop-blur-sm'
             onSubmit={addHandler} 
             onChange={changeHandler}
         >

@@ -20,10 +20,14 @@
     min-height:100svh;
   }
 
-
-
-
 }
+
+
+
+
+/* _____________________________________________________________________________________________________ */
+
+
 @layer utilities{
   .button{
     padding-inline:20px;
@@ -81,6 +85,7 @@
     border-radius: 1.5rem;
     text-align: center;
     background: #d5532057;
+    z-index: 10;
   }
   .formLabel{
     color: #000000;
@@ -132,7 +137,52 @@
     mask-position: center;
     mask-repeat: no-repeat;
   }
+
+
+/* Animations */
+@keyframes wobbling {
+			
+        
+        0% {
+          transform:rotate(0deg);
+          transform-origin:50% 0;
+        }
+        10% {
+          transform:rotate(2deg);
+        }
+        20% {
+          transform:rotate(-4deg);
+        }
+        30% {
+          transform:rotate(4deg);
+        }
+
+        60% {
+          transform:rotate(-4deg);
+        }
+        70% {
+          transform:rotate(4deg);
+        }
+        80% {
+          transform:rotate(-2deg);
+        }
+        90% {
+          transform:rotate(2deg);
+        }
+        100% {
+          transform:rotate(0deg);
+          transform-origin:50% 0;
+        }
+	}
+.wobble_animation{
+  animation: wobbling 10s linear 0s infinite alternate forwards;
 }
+
+
+
+}
+
+
 
 @media (width <= 1024px){
   .form{
@@ -144,3 +194,5 @@
   }
 
 }
+
+
