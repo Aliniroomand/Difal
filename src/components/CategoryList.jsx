@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 // services & utils
-import { getCategory } from '../services/Admin';
 import Loader from '../modules/Loader';
 import DeleteCategoris from './DeleteCategoris';
+import {ListOfCatergories} from "../hooks/ReactQueriesHooks"
 // toast
 import toast from 'react-hot-toast';
 
 const CategoryList = () => {
-    const{data,isLoading,isError,error}=useQuery({queryKey:["category-list"],queryFn:getCategory })
+    const{data,isLoading,isError,error}=ListOfCatergories()
     
 
             

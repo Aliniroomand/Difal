@@ -1,12 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-// services
-import { getMyPosts } from '../services/Dashbord';
-// utils
-import toast from 'react-hot-toast';
-import { ChangePriceToToman } from '../utils/ChangePriceToIranToman';
-import Loader from '../modules/Loader';
-import DeletePosts from './DeletePosts';
+
 import MyPost from './MyPost';
 
 const PostsList = ({posts}) => {

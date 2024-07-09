@@ -23,7 +23,7 @@ const Header = () => {
         
     }
     return (
-        <header className='sticky top-0 z-50 flex flex-row max-w-full bg-white h-[10svh] text-xs  items-center text-center backdrop-blur-sm  bg-opacity-40 right-0'>
+        <header className='fixed top-0 z-50 flex flex-row w-full bg-white h-[10svh] text-xs  items-center text-center backdrop-blur-sm  bg-opacity-40 right-0'>
             <section className='z-[51] flex flex-row w-1/2 left-1/2 items-center justify-start h-[10svh] gap-10 px-5'>
                 <Link to="/">
                     <img className='sm:h-[10svh] h-[5svh]' src={divarLogo} alt="divarLogo" />

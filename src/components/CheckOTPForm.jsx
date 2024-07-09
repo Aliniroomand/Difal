@@ -32,9 +32,9 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
 
     return (
         <>
-    <form onSubmit={submitHandler} className='form'   >
-        <h1 className=' text-3xl'>ورود کد تایید</h1>
-        <p className=' text-sm'>کد تایید پنج رقمی ارسال شده<br/>به شماره {mobileNumber} را وارد نمایید</p>
+    <form onSubmit={submitHandler} className='form h-68 sm:w-1/2 sm:right-[25%]'  >
+        <h1 className='w-full sm:text-4xl text-xl text-white  '>ورود کد تایید</h1>
+        <p className=' sm:text-xl  text-white'>کد تایید پنج رقمی ارسال شده<br/>به شماره {mobileNumber} را وارد نمایید</p>
         <input 
             type="text"
             placeholder='کد تایید ...' 

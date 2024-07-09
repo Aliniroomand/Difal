@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 // components
 import MainSidebar from '../components/MainSidebar';
 import MainComponent from '../components/MainComponent';
-// queries and fuctions
-import { useQuery } from '@tanstack/react-query';
-import { getAllPosts } from '../services/Dashbord';
 // utils
 import Loader from '../modules/Loader';
 import toast from 'react-hot-toast';
+import { AllProductsQuery } from '../hooks/ReactQueriesHooks';
 
 const HomePage = () => {
     const[filterByCategory,setFilterByCategory]=useState("all")
 
 
-        const {data,isLoading,error}=useQuery({queryKey:["all-posts"],queryFn:getAllPosts})
+        const {data,isLoading,error}=AllProductsQuery()
         
         if(isLoading)return <Loader/>;
         if(error) toast.error("بارگذاری با خطا مواجه شده است")
@@ -32,7 +30,7 @@ const HomePage = () => {
             <MainSidebar 
                 filterByCategory={filterByCategory} 
                 setFilterByCategory={setFilterByCategory} />
-            <MainComponent posts={shownPosts}/>
+            {/* <MainComponent posts={shownPosts}/> */}
             </main>
         }
         </>

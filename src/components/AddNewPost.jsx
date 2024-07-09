@@ -56,7 +56,6 @@ const addHandler=(e)=>{
           formData.append(key, form[key]);
         }
       }
-    // AddNewPostFunction(formData)
     mutate(formData)
 
     console.log(formData)
@@ -65,7 +64,7 @@ const addHandler=(e)=>{
 
     return (
         <form         
-            className='form h-[30rem] top-96 backdrop-blur-sm'
+            className='form h-[35rem] top-96 backdrop-blur-sm'
             onSubmit={addHandler} 
             onChange={changeHandler}
         >
@@ -111,7 +110,7 @@ const addHandler=(e)=>{
                     className='w-3/4 right-[12%] h-20 text-xs'
             />
 
-            <button className='button  w-3/4' type='submit'>ثبت آگهی</button>
+            <button className='button h-10 w-3/4' type='submit'>ثبت آگهی</button>
         </form>
     );
 };

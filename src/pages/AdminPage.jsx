@@ -6,7 +6,6 @@ import CategoryList from '../components/CategoryList';
 const AdminPage = () => {
     return (
         <div >
-            AdminPage
         <CategoryList/>
         <CategoryForm/>
         </div>

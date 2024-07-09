@@ -1,13 +1,12 @@
 import React from 'react';
 import AddNewPost from '../components/AddNewPost';
 import PostsList from '../components/PostsList';
-import { useQuery } from '@tanstack/react-query';
-import { getMyPosts } from '../services/Dashbord';
 import toast from 'react-hot-toast';
 import Loader from '../modules/Loader';
+import  {MyPostsListQuery}  from '../hooks/ReactQueriesHooks';
 
 const DashbordPage = () => {
-    const{data,isLoading,error}=useQuery({queryKey:["my-posts-list"],queryFn:getMyPosts})
+    const{data,isLoading,error}=MyPostsListQuery()
 
     if(error){return toast.error(`دریافت پست های شما با خطا مواجه شد ، دوباره امتحان کنید`)}
     if(isLoading)return <Loader text={"در حال بارگذاری لیست"}/>
