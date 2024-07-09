@@ -5,15 +5,18 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getCategory } from '../services/Admin';
 import { AddNewPostFunction, getMyPosts } from '../services/Dashbord';
 import toast from 'react-hot-toast';
+import { ListOfCatergories } from '../hooks/ReactQueriesHooks';
 
 
 const AddNewPost = () => {
-    const queryClient=useQueryClient(["my-posts-list"])
-const {data,isLoading,isError}=useQuery({queryKey:["category-list"],queryFn:getCategory})
+    const queryClient=useQueryClient()
+
+const {data,isLoading,isError}=ListOfCatergories()
 
 
 
-const{mutate,isPending,isError:mutatedIsError}=useMutation({mutationFn:(formData)=>AddNewPostFunction(formData) , onSuccess:()=>queryClient.invalidateQueries(["my-posts-list"])})
+const{mutate,isPending,isError:mutatedIsError}=useMutation({mutationFn:(formData)=>AddNewPostFunction(formData) ,
+     onSuccess:()=>queryClient.invalidateQueries("my-posts-list")})
 
 
 

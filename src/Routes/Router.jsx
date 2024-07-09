@@ -13,27 +13,29 @@ import Loader from "../modules/Loader"
 import { getCookie } from "../utils/cookie"
 import toast from "react-hot-toast"
 import ProductINFOS from "../pages/ProductINFOS"
+import { UserINFSQuery } from "../hooks/ReactQueriesHooks"
 
 
 const Router =()=> {
-    const { data, isLoading, error } = useQuery({
-        queryKey: ["profile"],
-        queryFn: userInformations,
-        staleTime:Infinity,
-        cacheTime:Infinity,
-      }) ;
-
+    const { data, isLoading, error } = UserINFSQuery()
+console.log(data);
 if(isLoading) return <Loader/>;
-if(error) return toast.error("مشکلی پیش آمده،دوباره امتحان کنید")
-    return(
+return(
+    (!data) ? 
         <Routes>
             <Route index element={<HomePage/>}/>
-            <Route path="/dashbord" element={data ? <DashbordPage/> : <Navigate to="/auth"/>}/>
-            <Route path="/auth" element={data ?<Navigate to="/dashbord"/> : <AuthPage/>}/>
-            <Route path="/admin" element={data && data.data.role==="ADMIN"?<AdminPage/> : <Navigate to="/"/> }/>
-            <Route path="/product/:id" element={<ProductINFOS/>}/>
-            <Route path="*" element={<NotFound/>}/>
+            <Route path="/auth" element={<AuthPage/>}/>
+            <Route path="*" element={<Navigate to="/auth"/>}/>
         </Routes>
-    )
+        :
+        <Routes>
+        <Route index element={<HomePage/>}/>
+        <Route path="/dashbord" element={data ? <DashbordPage/> : <Navigate to="/auth"/>}/>
+        <Route path="/auth" element={data ?<Navigate to="/dashbord"/> : <AuthPage/>}/>
+        <Route path="/admin" element={data && data.data.role==="ADMIN"?<AdminPage/> : <Navigate to="/"/> }/>
+        <Route path="/product/:id" element={<ProductINFOS/>}/>
+        <Route path="*" element={<NotFound/>}/>
+        </Routes>
+   )
 }
 export default Router

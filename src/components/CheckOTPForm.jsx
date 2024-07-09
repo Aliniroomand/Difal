@@ -20,7 +20,8 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
         if(response){
            toast.success("ورود با موفقیت انجام شد")
            setCookie(response?.data);
-           navigate("/")
+           navigate("/");
+           window.location.reload();
            
         }
         if(error){

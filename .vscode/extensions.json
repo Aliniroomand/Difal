@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "stivo.tailwind-fold"
+        "stivo.tailwind-fold",
+        "silasnevstad.gpthelper"
     ]
 }

@@ -17,8 +17,8 @@ const queryClient=new QueryClient({defaultOptions})
       <BrowserRouter>
         <Layout>
           <Router/>
-          <Toaster/>
         </Layout>
+          <Toaster/>
       </BrowserRouter>
       <ReactQueryDevtools/>
     </QueryClientProvider>
