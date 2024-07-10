@@ -7,9 +7,10 @@ import Loader from '../modules/Loader';
 import toast from 'react-hot-toast';
 import { AllProductsQuery } from '../hooks/ReactQueriesHooks';
 
-const HomePage = () => {
+const HomePage = ({searchQuery}) => {
     const[filterByCategory,setFilterByCategory]=useState("all")
 
+    console.log(searchQuery);
 
         const {data,isLoading,error}=AllProductsQuery()
         
@@ -30,7 +31,7 @@ const HomePage = () => {
             <MainSidebar 
                 filterByCategory={filterByCategory} 
                 setFilterByCategory={setFilterByCategory} />
-            {/* <MainComponent posts={shownPosts}/> */}
+            <MainComponent posts={shownPosts}/>
             </main>
         }
         </>
