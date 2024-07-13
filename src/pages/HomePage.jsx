@@ -7,21 +7,29 @@ import Loader from '../modules/Loader';
 import toast from 'react-hot-toast';
 import { AllProductsQuery } from '../hooks/ReactQueriesHooks';
 
-const HomePage = ({searchQuery}) => {
+const HomePage = () => {
     const[filterByCategory,setFilterByCategory]=useState("all")
 
-    console.log(searchQuery);
+    const [searchByName,setSearchByName]=useState("")
 
-        const {data,isLoading,error}=AllProductsQuery()
+    console.log(searchByName);
+    
+    
+    
+    const {data,isLoading,error}=AllProductsQuery()
+    if(isLoading)return <Loader/>;
+    if(error) toast.error("بارگذاری با خطا مواجه شده است")
         
-        if(isLoading)return <Loader/>;
-        if(error) toast.error("بارگذاری با خطا مواجه شده است")
+// search by category
+let shownPosts=null;
 
+if(filterByCategory === "all")shownPosts=data?.data.posts
+if(filterByCategory !== "all") shownPosts= data?.data.posts.filter(i=> i.category === filterByCategory) 
+    //______ search by category
+// search by name
 
-        let shownPosts=null;
-            
-        if(filterByCategory === "all")shownPosts=data?.data.posts
-          if(filterByCategory !== "all") shownPosts= data?.data.posts.filter(i=> i.category === filterByCategory) 
+const filteredItems=shownPosts.filter(i=>i.options.title.trim().includes(searchByName))
+//_____search by name
 
 
     return (
@@ -30,8 +38,15 @@ const HomePage = ({searchQuery}) => {
             <main className=' flex flex-row overflow-x-hidden'>
             <MainSidebar 
                 filterByCategory={filterByCategory} 
-                setFilterByCategory={setFilterByCategory} />
-            <MainComponent posts={shownPosts}/>
+                setFilterByCategory={setFilterByCategory} 
+                searchByName=
+                {searchByName}
+                setSearchByName=
+                {setSearchByName}
+            />
+            <MainComponent posts={filteredItems}
+            
+            />
             </main>
         }
         </>

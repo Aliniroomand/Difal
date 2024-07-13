@@ -5,20 +5,16 @@ import AuthPage from "../pages/AuthPage"
 import DashbordPage from "../pages/DashbordPage"
 import AdminPage from "../pages/AdminPage"
 import NotFound from "../pages/NotFound"
-// React Query and its options
-import { useQuery } from "@tanstack/react-query"
 // services and helpers
-import {userInformations} from "../services/GetUserProfile"
 import Loader from "../modules/Loader"
-import { getCookie } from "../utils/cookie"
-import toast from "react-hot-toast"
 import ProductINFOS from "../pages/ProductINFOS"
 import { UserINFSQuery } from "../hooks/ReactQueriesHooks"
 
 
 const Router =()=> {
     const { data, isLoading, error } = UserINFSQuery()
-console.log(data);
+
+
 if(isLoading) return <Loader/>;
 return(
     (!data) ? 

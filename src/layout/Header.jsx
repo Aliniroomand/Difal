@@ -2,22 +2,19 @@ import React, { useContext, useState } from 'react';
 // images
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import divarLogo from '/divar.svg'
-import searchLogo from '/searchIcon.svg'
 import profile from '/profile.svg'
 // react queries
 import {UserINFSQuery} from "../hooks/ReactQueriesHooks"
 // cookie
 import { setCookie } from '../utils/cookie';
-import { SearchContext } from '../context/SearchContext';
 // components
-import SearchTab from "../modules/SearchTab"
 
 const Header = () => {
     const { data } = UserINFSQuery();
 
-    const[showSearchBar,setShowSearchBar]=useState(false)
-console.log(showSearchBar);
-    const{searchQuery,setSearchQuery}=useContext(SearchContext)
+
+
+
 
 
     const navigate=useNavigate()
@@ -39,16 +36,8 @@ console.log(showSearchBar);
             </section>
             
             <section className='flex flex-row w-4/5 right-[20%] items-center justify-end h-[10svh] sm:gap-10 px-5 text-xs'>
-                <section onClick={()=>setShowSearchBar(prev=>!prev)} className='grid place-items-center w-1/4 right-0 cursor-pointer'>
-                    <img className='w-[30px]' src={searchLogo} alt="searchLogo" />
-                    <h3>جستجو</h3>
-                </section>
-                {/* Search bar  */}
-                {
-                    showSearchBar &&
-                    <SearchTab showSearchBar={showSearchBar} setShowSearchBar={setShowSearchBar}/>
-                }
-                {/*_____ Search bar  */}
+
+
 
                 <Link className={`flex flex-row button ${data? "w-1/4" : "w-1/3"} sm:w-auto` }
                         to={`${data?.data?.role !== "ADMIN" ? "/dashbord": "/admin"}`}>
