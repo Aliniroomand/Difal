@@ -1,25 +1,34 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { getAllPosts } from '../services/Dashbord';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../modules/Loader';
 import postsBG from "../assets/images/paper_without_BG.png"
 import { AllProductsQuery } from '../hooks/ReactQueriesHooks';
 import { ChangePriceToToman } from '../utils/ChangePriceToIranToman';
 
+import goBack from "/exit.svg"
+import favorite from "/favorite.svg"
 
 const ProductINFOS = () => {
     const {id}=useParams()
     const{data,isLoading,error}=AllProductsQuery()
-
+    const navigate=useNavigate()
     if(isLoading)return <Loader/>;
     if(error) toast.error("بارگذاری با خطا مواجه شده است")
 
     const productINF=data.data.posts.find(i=>i._id === id)
     return (
-        <section className=' relative h-[89svh] sm:w-1/3 sm:right-1/3 wobble_animation'>
-            <img src={postsBG} className='absolute z-0 h-[91svh] w-full ' alt="" />
-            <section className='absolute top-14 w-full h-fit
+        <section className=' relative -top-[3svh] sm:w-1/3 sm:right-1/3 wobble_animation '>
+            <img src={postsBG} className='absolute z-0 h-[89svh] w-full ' alt="" />
+            <section className='absolute top-[70svh] left-3 z-50 w-20 h-20 text-xs flex flex-col items-start justify-evenly'
+            >
+                <button className='flex  Darkbutton hover:text-gray-300' onClick={()=>navigate(-1)}>
+                    <img src={goBack} alt="goBack" />بازگشت 
+                </button>
+                <button className='flex Darkbutton hover:text-gray-300'>
+                <img src={favorite} alt="favorite" /> پسندیدم
+                </button>
+            </section>
+            <section className='absolute top-10 w-full h-full
              flex flex-col items-center justify-start '>
 
                 <img className='maskForImages' src={`${import.meta.env.VITE_BASE_URL}/${productINF.images}`} alt="" />
