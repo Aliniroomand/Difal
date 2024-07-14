@@ -1,14 +1,28 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Loader from '../modules/Loader';
-import postsBG from "../assets/images/paper_without_BG.png"
-import { AllProductsQuery } from '../hooks/ReactQueriesHooks';
+// RTK
+import { useDispatch, useSelector } from 'react-redux';
+import { favoriteStore } from '../features/FavoriteSlice';
+import { AddOrRemoveFavorite } from '../features/FavoriteSlice';
+// utils
 import { ChangePriceToToman } from '../utils/ChangePriceToIranToman';
-
+import Loader from '../modules/Loader';
+// query
+import { AllProductsQuery } from '../hooks/ReactQueriesHooks';
+// images
+import postsBG from "../assets/images/paper_without_BG.png"
 import goBack from "/exit.svg"
 import favorite from "/favorite.svg"
 
+
+
 const ProductINFOS = () => {
+    const store=useSelector(favoriteStore)
+    const dispatch=useDispatch()
+    console.log(store);
+
+
+
     const {id}=useParams()
     const{data,isLoading,error}=AllProductsQuery()
     const navigate=useNavigate()
@@ -24,7 +38,7 @@ const ProductINFOS = () => {
                 <button className='flex  Darkbutton hover:text-gray-300' onClick={()=>navigate(-1)}>
                     <img src={goBack} alt="goBack" />بازگشت 
                 </button>
-                <button className='flex Darkbutton hover:text-gray-300'>
+                <button onClick={(id)=>dispatch(AddOrRemoveFavorite(id))} className='flex Darkbutton hover:text-gray-300'>
                 <img src={favorite} alt="favorite" /> پسندیدم
                 </button>
             </section>
