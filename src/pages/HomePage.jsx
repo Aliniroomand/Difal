@@ -9,13 +9,9 @@ import { AllProductsQuery } from '../hooks/ReactQueriesHooks';
 
 const HomePage = () => {
     const[filterByCategory,setFilterByCategory]=useState("all")
-
     const [searchByName,setSearchByName]=useState("")
 
-    console.log(searchByName);
-    
-    
-    
+
     const {data,isLoading,error}=AllProductsQuery()
     if(isLoading)return <Loader/>;
     if(error) toast.error("بارگذاری با خطا مواجه شده است")
@@ -28,7 +24,7 @@ if(filterByCategory !== "all") shownPosts= data?.data.posts.filter(i=> i.categor
     //______ search by category
 // search by name
 
-const filteredItems=shownPosts.filter(i=>i.options.title.trim().includes(searchByName))
+const filteredItems=shownPosts.filter(i=>i.options && i.options.title && i.options.title.trim().includes(searchByName))
 //_____search by name
 
 

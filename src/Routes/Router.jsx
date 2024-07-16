@@ -9,6 +9,7 @@ import NotFound from "../pages/NotFound"
 import Loader from "../modules/Loader"
 import ProductINFOS from "../pages/ProductINFOS"
 import { UserINFSQuery } from "../hooks/ReactQueriesHooks"
+import FavoritePage from "../pages/FavoritePage"
 
 
 const Router =()=> {
@@ -30,6 +31,7 @@ return(
         <Route path="/auth" element={data ?<Navigate to="/dashbord"/> : <AuthPage/>}/>
         <Route path="/admin" element={data && data.data.role==="ADMIN"?<AdminPage/> : <Navigate to="/"/> }/>
         <Route path="/product/:id" element={<ProductINFOS/>}/>
+        <Route path="/favorites" element={<FavoritePage/>}/>
         <Route path="*" element={<NotFound/>}/>
         </Routes>
    )

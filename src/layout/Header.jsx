@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import divarLogo from '/divar.svg'
 import profile from '/profile.svg'
-import favorite from '/favorite.svg'
+import favorite from '/deActivedFavorite.svg'
 import exit from '/exit.svg'
 
 // react queries
@@ -43,11 +43,12 @@ const Header = () => {
 
 
 
-                <Link  className={`flex flex-row button ${data? "w-1/4" : "w-1/3"} sm:w-auto` }
-                        to={`${data?.data?.role !== "ADMIN" ? "/dashbord": "/admin"}`}>
+                <section  className={`flex flex-row button ${data? "w-1/4" : "w-1/3"} sm:w-auto` }
+                        >
                     <img src={profile} className={`${window.innerWidth < "640" && "hidden"}`} alt="profile" />
                     <section  
                         onMouseEnter={()=>{setShowingUserPanel(true)}}
+                        onClick={()=>{setShowingUserPanel(true)}}
                         className='relative'
                     >
                         <p >
@@ -60,14 +61,14 @@ const Header = () => {
                                     className='absolute top-[7svh] w-44 left-0 h-fit bg-white bg-opacity-55  flex flex-col items-center justify-between gap-3 p-4 rounded-2xl flex-nowrap'>
                                     <section className='flex hover:opacity-70 '>
                                         <img src={profile} alt="" />
-                                        <Link to="/dashbord">رفتن به
+                                        <Link to={`${data?.data?.role !== "ADMIN" ? "/dashbord": "/admin"}`}>رفتن به
                                         {`${data?.data?.role !== "ADMIN" ? " دیوار من": " پنل ادمین" }`}
                                         </Link>
                                     </section>
 
                                     <section className=' flex  hover:opacity-70 '>
                                     <img  src={favorite} alt="favorite" />
-                                    <Link>
+                                    <Link to={"/favorites"}>
                                     لیست علاقه مندی ها
                                     </Link>
                                     </section>
@@ -87,7 +88,7 @@ const Header = () => {
 
 
                     </section>
-                </Link>
+                </section>
                 <Link  className={`button ${data? "w-1/4" : "w-1/3"} sm:w-auto`} to="/dashbord">
                     ثبت آگهی
                 </Link>
