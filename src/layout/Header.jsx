@@ -51,7 +51,7 @@ const Header = () => {
                         onClick={()=>{setShowingUserPanel(true)}}
                         className='relative'
                     >
-                        <p >
+                        <section >
                             {`${data?.data?.role !== "ADMIN" ? "دیوار من": " پنل ادمین" }`}
                             {
                                 showingUserPanel &&
@@ -84,7 +84,7 @@ const Header = () => {
                                     
                                 </section>
                             }
-                        </p>
+                        </section>
 
 
                     </section>

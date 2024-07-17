@@ -5,7 +5,6 @@ import './index.css'
 // redux RTK
 import { Provider } from 'react-redux'
 import store from './app/store.jsx'
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <App />

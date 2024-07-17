@@ -24,10 +24,7 @@ const ProductINFOS = () => {
 
     // for checking is available in favorites or not
     const isInFavoritesOrNot=store.findIndex(i=>i===id)
-
-    console.log(isInFavoritesOrNot);
-
-    // for checking is available in favorites or not
+    // ____________for checking is available in favorites or not
     
     const{data,isLoading,error}=AllProductsQuery()
     const navigate=useNavigate()

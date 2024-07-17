@@ -1,6 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState=[]
+
+const loadState = () => {
+    try {
+      const serializedState = localStorage.getItem("favorites");
+      if (serializedState === null) {
+        return [];
+      }
+      return JSON.parse(serializedState);
+    } catch (err) {
+      return [];
+    }
+  };
+  
+  const saveState = (state) => {
+    try {
+      const serializedState = JSON.stringify(state);
+      localStorage.setItem("favorites", serializedState);
+    } catch (err) {
+    }
+  };
+  
+
+
+
+
+const initialState=loadState()
 
 const favoriteSlice=createSlice({
     name:"favorites",
@@ -15,6 +40,7 @@ const favoriteSlice=createSlice({
             }else{
                 state.splice(index,1);
             }
+            saveState(state)
             
         }
     }

@@ -22,8 +22,8 @@ let shownPosts=null;
 if(filterByCategory === "all")shownPosts=data?.data.posts
 if(filterByCategory !== "all") shownPosts= data?.data.posts.filter(i=> i.category === filterByCategory) 
     //______ search by category
-// search by name
 
+// search by name
 const filteredItems=shownPosts.filter(i=>i.options && i.options.title && i.options.title.trim().includes(searchByName))
 //_____search by name
 
