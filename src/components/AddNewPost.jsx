@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-// queies
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-// api services
-import { getCategory } from '../services/Admin';
-import { AddNewPostFunction, getMyPosts } from '../services/Dashbord';
+// queries
+import { useMutation,  useQueryClient } from '@tanstack/react-query';
+// services
+import { AddNewPostFunction, } from '../services/Dashbord';
 import toast from 'react-hot-toast';
 import { ListOfCatergories } from '../hooks/ReactQueriesHooks';
+import Loader from '../modules/Loader';
 
 
 const AddNewPost = () => {
@@ -58,52 +58,55 @@ const addHandler=(e)=>{
       }
     mutate(formData)
 
-    console.log(formData)
 }
 
 
     return (
+    <>
+    <section className=' fixed z-50'>
+    {isPending && <Loader />}
+    </section>
         <form         
-            className='form h-[35rem] top-96 backdrop-blur-sm'
+            className='form h-[35rem] sm:w-1/3 sm:right-1/3 top-0 backdrop-blur-sm '
             onSubmit={addHandler} 
             onChange={changeHandler}
         >
             <h1 className='relative text-center bg-white text-xl px-6 bg-opacity-40 rounded-2xl '>افزودن آگهی</h1>
             
-            <label className='formLabel text-sm'  htmlFor="title">عنوان</label>
+            <label className='darkFormLabel text-sm'  htmlFor="title">عنوان</label>
             <input className='input' type="text"
                     name='title' 
                     id='title'
                     placeholder='فروش یک عدد ...'
             />
             
-            <label className='formLabel text-sm' htmlFor="content">توضیحات درباره آگهی</label>
+            <label className='darkFormLabel text-sm' htmlFor="content">توضیحات درباره آگهی</label>
             <textarea className='input h-[100px]' name="content" id="content"/>
 
-            <label className='formLabel text-sm' htmlFor="amount">قیمت</label>
+            <label className='darkFormLabel text-sm' htmlFor="amount">قیمت</label>
             <input className='input' type="number"
                     name='amount' 
                     id='amount'
                     placeholder='قیمت به تومان'
             />
 
-            <label className='formLabel text-sm' htmlFor="city">شهر</label>
+            <label className='darkFormLabel text-sm' htmlFor="city">شهر</label>
             <input className='input' type="text"
                     name='city' 
                     id='city'
                     placeholder='تهران یا اصفهان یا ...'
             />
 
-            <label className='formLabel text-sm' htmlFor="category">دسته بندی</label>
+            <label className='darkFormLabel text-sm' htmlFor="category">دسته بندی</label>
             <select className="input w-3/4 rounded-xl" name="category" id="category">
                 {isLoading&& <option className="input w-3/4">درحال بارگذاری...</option>}
                 {isError&& <option className="input w-3/4">متاسفانه با مشکل مواجه شدیم... دوباره امتحان کنید</option>}
                 {data?.data.map((i)=>
-                <option className="input w-3/4 " value={i._id} key={i._id}>{i.name}</option>
+                <option className="input w-fit text-xs text-inherit " value={i._id} key={i._id}>{i.name}</option>
             )}
             </select>
             
-            <label className='formLabel text-sm' htmlFor="images">عکس محصول</label>
+            <label className='darkFormLabel text-sm' htmlFor="images">عکس محصول</label>
             <input  type="file"
                     name='images' 
                     id='images'
@@ -112,6 +115,7 @@ const addHandler=(e)=>{
 
             <button className='button h-10 w-3/4' type='submit'>ثبت آگهی</button>
         </form>
+    </>
     );
 };
 

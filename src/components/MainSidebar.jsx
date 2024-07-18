@@ -11,7 +11,7 @@ const MainSidebar = ({filterByCategory,setFilterByCategory,searchByName,setSearc
     return (
         <>
 
-        <aside className='fixed w-[100svw] sm:w-52 sm:h-[50svh] top-[8svh] z-50 h-fit'>
+        <aside className='fixed w-[100svw] sm:w-52 sm:h-[50svh] top-[8svh] z-10 h-fit'>
             <SearchByNameOfSideBar
                 setSearchByName={setSearchByName}
                 searchByName={searchByName}

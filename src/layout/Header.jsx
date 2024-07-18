@@ -51,14 +51,14 @@ const Header = () => {
                         onClick={()=>{setShowingUserPanel(true)}}
                         className='relative'
                     >
-                        <section >
+                        <section className=' text-nowrap relative'>
                             {`${data?.data?.role !== "ADMIN" ? "دیوار من": " پنل ادمین" }`}
                             {
                                 showingUserPanel &&
                                 <section 
                                     onMouseLeave={()=>{setShowingUserPanel(false)}}
                                     onMouseEnter={()=>{setShowingUserPanel(true)}}
-                                    className='absolute top-[7svh] w-44 left-0 h-fit bg-white bg-opacity-55  flex flex-col items-center justify-between gap-3 p-4 rounded-2xl flex-nowrap'>
+                                    className='absolute top-[7svh] w-44 left-0 h-fit bg-white bg-opacity-80  flex flex-col items-center justify-between gap-3 p-4 rounded-2xl flex-nowrap z-[55]'>
                                     <section className='flex hover:opacity-70 '>
                                         <img src={profile} alt="" />
                                         <Link to={`${data?.data?.role !== "ADMIN" ? "/dashbord": "/admin"}`}>رفتن به
@@ -66,7 +66,7 @@ const Header = () => {
                                         </Link>
                                     </section>
 
-                                    <section className=' flex  hover:opacity-70 '>
+                                    <section className=' flex  hover:opacity-70 z-[100] '>
                                     <img  src={favorite} alt="favorite" />
                                     <Link to={"/favorites"}>
                                     لیست علاقه مندی ها
