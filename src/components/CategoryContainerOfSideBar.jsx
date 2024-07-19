@@ -35,7 +35,7 @@ const CategoryContainerOfSideBar = ({filterByCategory,setFilterByCategory}) => {
     return (
         <>
         <img className="fixed w-full h-28 right-0 sm:top-[20svh] sm:h-[50svh] z-0 sm:w-56 sm:right-3" src={window.innerWidth <= "640" ? sidebarBGTop : sidebarBGRight} alt="sidebarBG" />
-        <ul  className='relative z-50 h-28 w-[80%] right-[10%] top-0 flex-col items-center sm:top-[9svh] flex  sm:w-48 sm:gap-1 sm:right-6 sm:h-[42svh] overflow-hidden'>
+        <ul  className='relative z-50 h-28 w-[80%] right-[10%] top-0 flex-col items-center sm:top-[9svh] flex  sm:w-48 sm:gap-1 sm:right-6 sm:h-[43svh] overflow-x-hidden overflow-y-scroll'>
             <li  className='sm:titles titles_withoutBG w-full right-0 my-2 text-xs h-6 self-start '>دسته بندی ها</li>
             <section id='scroll-section' className=' scroll flex sm:flex-col flex-row w-full right-0 text-sm sm:overflow-x-hidden justify-start overflow-x-scroll overflow-y-hidden show-scrollbar '>
 {/* buttons for scrolling */}

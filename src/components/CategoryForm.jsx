@@ -14,7 +14,7 @@ const CategoryForm = () => {
         icon:"",
     })
 
-    const{ mutate, isPending , error, data,isError}=useMutation({ mutationFn:addToCategory,onSuccess :()=>queryClient.invalidateQueries("category-list")});
+    const{ mutate, isPending , error, data}=useMutation({ mutationFn:addToCategory,onSuccess :()=>queryClient.invalidateQueries(["category-list"])});
 
 
 
@@ -32,29 +32,29 @@ const CategoryForm = () => {
         mutate(form);
             return
     }
-    
+    if(error) return toast.error(error)
     return (
         <form 
         onChange={changeHandler} 
         onSubmit={submitHandler}
-        className='form h-[20rem] backdrop-blur-sm'
+        className='form !top-0 backdrop-blur-sm sm:w-1/3 sm:right-1/3'
         >
             { (data?.status === 201) && <h3 className='bg-red-700 px-6 rounded-2xl text-red-100'>دسته بندی با موفقیت افزوده شد</h3>}
             {isPending&& <h1 className='bg-red-100 px-6 rounded-2xl text-red-700'>در حال افزودن دسته بندی</h1>}
 
-            <h1 className='text-xl'>افزودن دسته بندی</h1>
+            <h1 className='text-xl darkFormLabel border-b-2 mb-4 pb-4'>افزودن دسته بندی</h1>
 
             
-            <label className='formLabel'htmlFor="name">اسم دسته بندی</label>
+            <label className='darkFormLabel text-sm'htmlFor="name">اسم دسته بندی</label>
             <input className='input' defaultValue="" type="text" id='name' name='name' />
 
-            <label className='formLabel' htmlFor="slug">اسلاگ</label>
+            <label className='darkFormLabel text-sm' htmlFor="slug">اسلاگ</label>
             <input className='input' type="text" name='slug' id='slug' />
 
-            <label className='formLabel' htmlFor="icon">آیکن</label>
+            <label className='darkFormLabel text-sm' htmlFor="icon">آیکن</label>
             <input className='input' type="text" name='icon' id='icon' />
 
-            <button disabled={isPending} className='Darkbutton w-2/3 mt-6' type='submit'>ایجاد</button>
+            <button disabled={isPending} className='button w-2/3 mt-6' type='submit'>ایجاد</button>
         </form>
     );
 };

@@ -15,8 +15,8 @@ const {data,isLoading,isError}=ListOfCatergories()
 
 
 
-const{mutate,isPending,isError:mutatedIsError}=useMutation({mutationFn:(formData)=>AddNewPostFunction(formData) ,
-     onSuccess:()=>queryClient.invalidateQueries("my-posts-list")})
+const{mutate,isPending,error:mutatedError}=useMutation({mutationFn:(formData)=>AddNewPostFunction(formData) ,
+     onSuccess:()=>queryClient.invalidateQueries(["my-posts-list"])})
 
 
 
@@ -59,7 +59,7 @@ const addHandler=(e)=>{
     mutate(formData)
 
 }
-
+if(mutatedError) return toast.error(mutatedError)
 
     return (
     <>
@@ -67,7 +67,7 @@ const addHandler=(e)=>{
     {isPending && <Loader />}
     </section>
         <form         
-            className='form h-[35rem] sm:w-1/3 sm:right-1/3 top-0 backdrop-blur-sm '
+            className='form h-[35rem] sm:w-1/3 sm:right-1/3 !top-0 backdrop-blur-sm '
             onSubmit={addHandler} 
             onChange={changeHandler}
         >
@@ -113,7 +113,7 @@ const addHandler=(e)=>{
                     className='w-3/4 right-[12%] h-20 text-xs'
             />
 
-            <button className='button h-10 w-3/4' type='submit'>ثبت آگهی</button>
+            <button className='button h-10 w-3/4' disabled={isPending} type='submit'>ثبت آگهی</button>
         </form>
     </>
     );

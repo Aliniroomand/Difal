@@ -15,9 +15,9 @@ const MainComponent = ({posts}) => {
         <main className='mainPageComponentForSmallPage sm:mainPageComponentForLargePage text-darkBrown'>
         {
             posts.map((posts)=>
-                <Link to={`/product/${posts._id}`}  key={posts._id} className='relative flex sm:flex-col flex-col items-center justify-between sm:h-80 h-52 text-xs w-32 top-32 sm:top-0 sm:w-52 text-center'>
-                    <img src={postsBG} className='absolute z-0 h-full w-full opacity-90' alt="" />
-                    <section className='absolute flex flex-col justify-between items-center w-full h-1/2 top-8'>
+                <Link to={`/product/${posts._id}`}  key={posts._id} className='relative flex sm:flex-col flex-col items-center justify-between sm:h-60 h-52 text-xs w-32 top-32 sm:top-0 sm:w-53 text-center hover:scale-110 transition-all'>
+                    <img src={postsBG} className='absolute z-0 h-full w-full opacity-90' alt="postsBG" />
+                    <section className='absolute flex flex-col justify-between items-center w-full h-1/2 top-8 '>
                             <img loading='lazy' 
                                 onError={(e)=>{e.currentTarget.src="ErrorImageWithText.svg"}} 
                                 className='top-100 w-full h-full maskForImages' 

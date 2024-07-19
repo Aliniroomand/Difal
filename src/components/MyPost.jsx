@@ -4,7 +4,7 @@ import DeletePosts from './DeletePosts';
 
 const MyPost = ({post}) => {
     return (
-        <section  className='relative flex sm:flex-row flex-col items-center justify-between pt-8 pb-1 w-full  border-red-300 border-b-[1.5px]'>
+        <section  className='relative flex sm:flex-row flex-col items-center justify-between gap-2 pt-8 p-5 w-full  border-red-300 border-b-[1.5px]'>
         <section className='flex flex-row justify-start sm:items-end items-center gap-6 sm:w-1/2 w-full'>
             <img className=' w-14 h-full' src={`${import.meta.env.VITE_BASE_URL}/${post.images}`} />
             <section className='flex flex-col'>
