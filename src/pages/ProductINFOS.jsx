@@ -41,7 +41,7 @@ const ProductINFOS = () => {
 
                 <img className='maskForImages top-0 w-[100svh] h-[30svh] ' 
                     src={`${import.meta.env.VITE_BASE_URL}/${productINF.images}`} 
-                    alt="sssadsad" 
+                    alt="product img" 
                    
                     onError={(e)=>{e.currentTarget.src="/ErrorImageWithText.svg"}} 
    
@@ -63,7 +63,7 @@ const ProductINFOS = () => {
 
                 <section className='absolute top-[65svh] left-3 z-50 w-20 h-20 text-xs flex flex-col items-start justify-evenly'
             >
-                    <button className='flex  Darkbutton hover:text-gray-300 w-20' onClick={()=>navigate(-1)}>
+                    <button className='flex  Darkbutton hover:text-gray-300 w-20' onClick={()=> navigate("/")}>
                         <img src={goBack} alt="goBack" />بازگشت 
                     </button>
                     <button onClick={()=>dispatch(AddOrRemoveFavorite(id))} className='flex Darkbutton hover:text-gray-300 w-20 '>

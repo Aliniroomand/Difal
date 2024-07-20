@@ -40,7 +40,7 @@ const favoriteSlice=createSlice({
             }else{
                 state.splice(index,1);
             }
-            saveState(state)
+            saveFavorite(state)
             
         }
     }

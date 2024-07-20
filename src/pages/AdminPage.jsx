@@ -6,11 +6,15 @@ import PostsList from '../components/PostsList';
 import Loader from '../modules/Loader';
 import AddNewPost from '../components/AddNewPost';
 import { MyPostsListQuery } from '../hooks/ReactQueriesHooks';
+import { setCookie } from '../utils/cookie';
+import { useNavigate } from 'react-router-dom';
 
 const AdminPage = () => {
 
     const{data,isLoading,error}=MyPostsListQuery()
     
+const navigate=useNavigate()
+
     const ExitHandler=()=>{
         setCookie({accessToken:"",refreshToken:""})
         navigate("/auth");
@@ -30,29 +34,29 @@ const AdminPage = () => {
     if(error){return toast.error(`دریافت پست های شما با خطا مواجه شد ، دوباره امتحان کنید`)}
     return (
         <section className='absolute flex flex-col  items-start  w-full h-[85svh]  z-10' >
-            <section className='h-28  flex flex-row  sm:w-full text-xs sm:text-sm text-nowrap w-full sm:right-1/3 items-center justify-center sm:gap-4 '>
+            <section className='h-28  flex flex-row  sm:w-full text-xs sm:text-sm text-nowrap w-full sm:right-1/3 items-center justify-center sm:gap-4  '>
 
-                <button className={`Darkbutton  h-11 ${showItem.categoryList ? "bg-black text-white" : "bg-white text-black"}`}
+                <button className={`Darkbutton  h-11 text-wrap  text-[0.5rem] w-1/5 sm:text-base ${showItem.categoryList ? "bg-black text-white" : "bg-white text-black"}`}
                         onClick={()=>setShowItem({categoryList:true})}
                 >
-                    لیست دسته بندی ها
+                     دسته بندی ها
                 </button>
-                <button className={`Darkbutton  h-11 ${showItem.categoryForm ? "bg-black text-white" : "bg-white text-black"}`}
+                <button className={`Darkbutton  h-11 w-1/5 text-wrap  text-[0.5rem] sm:text-base ${showItem.categoryForm ? "bg-black text-white" : "bg-white text-black"}`}
                         onClick={()=>setShowItem({categoryForm:true})}
                 >
                     افزودن دسته بندی 
                 </button>
-                <button className={`Darkbutton  h-11 ${showItem.myPosts ? "bg-black text-white" : "bg-white text-black"}`}
+                <button className={`Darkbutton  h-11 w-1/5  text-[0.5rem] sm:text-base ${showItem.myPosts ? "bg-black text-white" : "bg-white text-black"}`}
                         onClick={()=>setShowItem({myPosts:true})}
                 >
                     پست های من
                 </button>
-                <button className={`Darkbutton  h-11 ${showItem.addPost ? "bg-black text-white" : "bg-white text-black"}`}
+                <button className={`Darkbutton  h-11 w-1/5  text-[0.5rem] sm:text-base ${showItem.addPost ? "bg-black text-white" : "bg-white text-black"}`}
                         onClick={()=>setShowItem({addPost:true})}
                 >
                     افزودن پست 
                 </button>
-                <button className={`Darkbutton bg-lightBrown  text-center flex justify-center items-center`} onClick={ExitHandler} >
+                <button className={`Darkbutton bg-lightBrown text-center flex justify-center items-center h-11 w-1/5 text-[0.5rem] sm:text-base `} onClick={ExitHandler} >
                     <img src="exit.svg" alt="" />
                 خروج
                 </button>

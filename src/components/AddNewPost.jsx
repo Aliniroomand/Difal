@@ -71,7 +71,7 @@ if(mutatedError) return toast.error(mutatedError)
             onSubmit={addHandler} 
             onChange={changeHandler}
         >
-            <h1 className='relative text-center bg-white text-xl px-6 bg-opacity-40 rounded-2xl '>افزودن آگهی</h1>
+            <h1 className='relative text-center text-white border-b-[2px] text-xl px-6 pb-3   '>افزودن آگهی</h1>
             
             <label className='darkFormLabel text-sm'  htmlFor="title">عنوان</label>
             <input className='input' type="text"

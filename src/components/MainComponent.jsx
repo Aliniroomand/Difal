@@ -22,11 +22,11 @@ const MainComponent = ({posts}) => {
                                 onError={(e)=>{e.currentTarget.src="ErrorImageWithText.svg"}} 
                                 className='top-100 w-full h-full maskForImages' 
                                 src={`${import.meta.env.VITE_BASE_URL}/${posts?.images}`} />
-                            <p className='sm:text-lg'>{posts?.options?.title} </p>
+                            <p className=' text-md text-darkBrown'>{posts?.options?.title} </p>
                     </section>
                     <section className='absolute flex sm:flex-row flex-col items-center justify-center sm:items-center gap-3 h-1/2 top-1/2 sm:w-1/2 w-full'>
                             <section className='grid place-items-center py-3'>
-                                <span><span className='text-gray-700 sm:text-xs'>  </span>{ChangePriceToToman(posts?.amount)}تومان</span>
+                                <span className='text-gray-800'>{ChangePriceToToman(posts?.amount)}تومان</span>
                                 <span className='flex flex-row items-center absolute bottom-0 pb-3'>
                                     <img  src="location.svg" alt="location svg" />
                                     <p className=' text-gray-800'>{posts?.options?.city}

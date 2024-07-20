@@ -38,7 +38,7 @@ const ExitHandler=()=>{
                 <button className={`Darkbutton ${showItem.myPosts ? "bg-black text-white" : "bg-white text-black"}`} onClick={()=>setShowItem({myPosts:true})} >
                 افزودن پست جدید
                 </button>
-                <button className={`Darkbutton bg-white text-darkBrown text-center flex justify-center items-center`} onClick={ExitHandler} >
+                <button className={`Darkbutton bg-lightBrown text-center flex justify-center items-center`} onClick={ExitHandler} >
                     <img src="exit.svg" alt="" />
                 خروج
                 </button>

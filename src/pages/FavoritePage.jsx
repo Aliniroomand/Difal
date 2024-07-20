@@ -17,11 +17,11 @@ const FavoritePage =  () => {
 console.log(favoriteDatas);
 
     return (
-        <article className=' relative flex flex-col items-start justify-between gap-2 border-red-200 border-[1.5px] text-sm px-2  w-[90%] right-[5%] rounded-xl  backdrop-blur-sm bg-white bg-opacity-40'>
-            <h1 className='titles absolute text-sm w-1/3 right-1/3 left-1/3 h-8 '>لیست پست های من</h1>
+        <article className=' relative flex flex-col items-start justify-between gap-2 border-red-200 border-[1.5px] text-sm px-2  w-[90%] right-[5%] rounded-xl  backdrop-blur-sm bg-white bg-opacity-40 z-40'>
+            <h1 className='titles absolute text-sm max-w-1/3 min-w-fit right-1/3 left-1/3 h-fit text-nowrap '>لیست پست های من</h1>
             {
-            favoriteDatas?.map(post=>
-            <section  className='relative flex sm:flex-row flex-col items-center justify-between py-2 w-full  border-red-300 border-b-[1.5px]'>
+            favoriteDatas?.map((post,index)=>
+            <section  className={`relative flex sm:flex-row flex-col items-center justify-between py-2 w-full  border-red-300 border-b-[1.5px] ${index === 0 && "pt-10" } `}>
                 <section className='flex flex-row justify-start sm:items-end items-center gap-6 sm:w-1/2 w-full'>
                     <img className=' w-14 h-full' src={`${import.meta.env.VITE_BASE_URL}/${post.images}`} />
                     <section className='flex flex-col'>
@@ -35,7 +35,7 @@ console.log(favoriteDatas);
                         <span><span className='text-gray-700 text-xs'> قیمت :  </span>{ChangePriceToToman(post.amount)}تومان</span>
                     </section>
                 </section>
-            <button onClick={()=>dispatch(AddOrRemoveFavorite(post._id))} className='flex text-center Darkbutton hover:text-gray-300 w-20 '>
+            <button onClick={()=>dispatch(AddOrRemoveFavorite(post._id))} className='flex Darkbutton  hover:text-gray-300  bg-lightOrange  hover:bg-black w-fit sm:mx-3 my-1'>
                 حذف
             </button>
             </section>
