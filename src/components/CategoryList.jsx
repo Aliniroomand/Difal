@@ -16,7 +16,7 @@ const CategoryList = () => {
         if(isLoading) return <Loader />;
         if(isError)return toast.error(`${error.message}`)
     return (
-        <article className='relative flex flex-col items-center justify-start gap-2 border-red-200 border-[1.5px] text-sm px-2 min-h-fit max-h-full overflow-scroll w-[90%] right-[5%] rounded-xl  backdrop-blur-sm bg-white bg-opacity-40 '> 
+        <article className='relative flex flex-col items-center justify-start gap-2 border-red-200 border-[1.5px] text-sm px-2 min-h-fit max-h-full  w-[90%] right-[5%] rounded-xl  backdrop-blur-sm bg-white bg-opacity-40 '> 
             <h1 className='titles h-7 absolute my-2'>دسته بندی ها</h1>
             {   
                 data.data.map((data ,index) =>

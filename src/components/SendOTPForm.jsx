@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // services
 import { SendOTP } from '../services/AuthHandler';
@@ -6,6 +6,9 @@ import { SendOTP } from '../services/AuthHandler';
 import toast from 'react-hot-toast';
 
 const SendOTPForm= ({setAuthStep,setMobileNumber,mobileNumber}) => {
+    const [isLoading,setIsLoading]=useState(false)
+
+
     const submitHandler=async (e)=>{
         e.preventDefault();
         const regexTest= /^09\d{9}$/;
@@ -15,7 +18,10 @@ const SendOTPForm= ({setAuthStep,setMobileNumber,mobileNumber}) => {
     }
 
 
+        setIsLoading(true)
         const{response,error}=await SendOTP(mobileNumber);
+        setIsLoading(false)
+
         if (response){
             setAuthStep(2)
         }
@@ -35,9 +41,11 @@ const SendOTPForm= ({setAuthStep,setMobileNumber,mobileNumber}) => {
                 onChange={(e)=>setMobileNumber(e.target.value)}
                 placeholder='09...'
                 className='input px-3'
-
             />
-            <button className='button '>
+            {isLoading&&
+                <h1 className='text-2xl text-red-900 bg-red-200 rounded-2xl w-full'>در حال ارسال شماره موبایل </h1>
+            }
+            <button className='button ' disabled={isLoading}>
                 ارسال کد تأیید 
             </button>
         </form>

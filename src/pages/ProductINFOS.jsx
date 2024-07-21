@@ -61,7 +61,7 @@ const ProductINFOS = () => {
                 <p>{(productINF?.options?.city)}</p>
 
 
-                <section className='absolute top-[65svh] left-3 z-50 w-20 h-20 text-xs flex flex-col items-start justify-evenly'
+                <section className='absolute bottom-[20svh] left-3 z-50 w-20 h-20 text-xs flex flex-col items-start justify-evenly'
             >
                     <button className='flex  Darkbutton hover:text-gray-300 w-20' onClick={()=> navigate("/")}>
                         <img src={goBack} alt="goBack" />بازگشت 

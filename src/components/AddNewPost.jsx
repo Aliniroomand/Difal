@@ -67,7 +67,7 @@ if(mutatedError) return toast.error(mutatedError)
     {isPending && <Loader />}
     </section>
         <form         
-            className='form h-[35rem] sm:w-1/3 sm:right-1/3 !top-0 backdrop-blur-sm '
+            className='form sm:form_for_largePage h-[35rem] sm:w-1/3 sm:right-1/3 !top-0 backdrop-blur-sm   '
             onSubmit={addHandler} 
             onChange={changeHandler}
         >

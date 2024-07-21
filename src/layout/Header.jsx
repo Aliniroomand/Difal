@@ -27,9 +27,19 @@ const Header = () => {
         navigate("/auth");
         window.location.reload()
         return
-
-
     }
+
+    const handleAddPost=()=>{
+        if(data?.data?.role === "ADMIN"){
+            navigate("/admin?view=addPost")
+        }else{
+            navigate("/dashbord?view=addPost")
+        }
+    }
+
+
+
+
     return (
         <header className='fixed top-0 z-50 flex flex-row w-[100svw] bg-white h-[10svh] text-xs  items-center text-center backdrop-blur-sm  bg-opacity-40 right-0'>
             <section className='z-[51] flex flex-row w-1/5 left-[80%] items-center justify-start h-[10svh] sm:gap-10 gap-2  sm:px-5'>
@@ -43,22 +53,21 @@ const Header = () => {
 
 
 
-                <section  className={`flex flex-row button ${data? "w-1/4" : "w-1/3"} sm:w-auto` }
+                <section  className={`flex flex-row button w-1/3 sm:w-auto cursor-pointer` }
                         >
-                    <img src={profile} className={`${window.innerWidth < "640" && "hidden"}`} alt="profile" />
+                    <img src={profile} className=' cursor-pointer' alt="profile" />
                     <section  
-                        onMouseEnter={()=>{setShowingUserPanel(true)}}
                         onClick={()=>{setShowingUserPanel(true)}}
                         className='relative'
                     >
-                        <section className=' text-nowrap relative'>
+                        <section className=' cursor-pointer text-nowrap relative'>
                             {`${data?.data?.role !== "ADMIN" ? "دیوار من": " پنل ادمین" }`}
                             {
                                 showingUserPanel &&
                                 <section 
                                     onMouseLeave={()=>{setShowingUserPanel(false)}}
                                     onMouseEnter={()=>{setShowingUserPanel(true)}}
-                                    className='absolute top-[7svh] w-44 left-0 h-fit bg-white bg-opacity-80  flex flex-col items-center justify-between gap-3 p-4 rounded-2xl flex-nowrap z-[55]'>
+                                    className='absolute top-[7svh] w-44 left-0 h-fit bg-white bg-opacity-80  flex flex-col items-center justify-between gap-3 p-4 rounded-2xl flex-nowrap z-[55] cursor-pointer'>
                                     <section className='flex hover:opacity-70 '>
                                         <img src={profile} alt="" />
                                         <Link to={`${data?.data?.role !== "ADMIN" ? "/dashbord": "/admin"}`}>رفتن به
@@ -72,7 +81,13 @@ const Header = () => {
                                     لیست علاقه مندی ها
                                     </Link>
                                     </section>
-                                    <section className='flex  hover:opacity-70 '>
+                                    <section className='flex justify-between items-center  hover:opacity-70  gap-2'>
+                                        <img src="/add.svg" alt="" />
+                                        <p onClick={handleAddPost} >
+                                            ثبت آگهی
+                                        </p>
+                                    </section>
+                                    <section className='flex  hover:opacity-70 z-[100]'>
                                         <img src={exit} alt="exit" />
                                         <p 
                                         className=' w-1/5 sm:w-auto'
@@ -81,7 +96,6 @@ const Header = () => {
                                             {data? "خروج" : "ورود" }
                                         </p>
                                     </section>
-                                    
                                 </section>
                             }
                         </section>
@@ -89,9 +103,7 @@ const Header = () => {
 
                     </section>
                 </section>
-                <Link  className={`button ${data? "w-1/4" : "w-1/3"} sm:w-auto`} to="/dashbord">
-                    ثبت آگهی
-                </Link>
+
 
 
             </section>

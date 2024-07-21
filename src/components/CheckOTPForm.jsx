@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // toast notification
 import toast from 'react-hot-toast';
 
@@ -8,7 +8,13 @@ import { setCookie } from '../utils/cookie';
 import { useNavigate } from 'react-router-dom';
 
 const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verificationCode}) => {
+    const [isLoading,setIsLoading]=useState(false)
+
     const navigate=useNavigate();
+
+
+
+
     const submitHandler=async (e)=>{
         const RegexTest=/^\d{5}$/;
         e.preventDefault()
@@ -16,16 +22,17 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
             toast.error("کد تایید حتما باید پنج رقمی باشد")
             return
         }
+        setIsLoading(true)
         const {response,error}=await CheckOTP(mobileNumber,verificationCode);
+        setIsLoading(false)
         if(response){
            toast.success("ورود با موفقیت انجام شد")
            setCookie(response?.data);
            navigate("/");
            window.location.reload();
-           
         }
         if(error){
-            
+            toast.error("خطا در تایید رمز ")
         }
         
     }
@@ -36,14 +43,17 @@ const CheckOTPForm = ({setAuthStep,setVerificationCode,mobileNumber,verification
         <h1 className='w-full sm:text-4xl text-xl text-white  '>ورود کد تایید</h1>
         <p className=' sm:text-xl  text-white'>کد تایید پنج رقمی ارسال شده<br/>به شماره {mobileNumber} را وارد نمایید</p>
         <input 
+            disabled={isLoading}
             type="text"
             placeholder='کد تایید ...' 
             onChange={(e)=>setVerificationCode(e.target.value)}
             value={verificationCode ? verificationCode : ""}
             className='input'
         />
-        
-        <button type='submit' className='button'> ثبت کد تایید</button>
+        {isLoading&&
+            <h1 className='text-2xl text-red-900 bg-red-200 rounded-2xl w-full'>درحال بارگذاری</h1>    
+        }
+        <button type='submit' disabled={isLoading} className='button'> ثبت کد تایید</button>
         <button onClick={()=>setAuthStep(1)} className='button'> تغییر شماره موبایل</button>
     </form>
 

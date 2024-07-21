@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // components
 import CategoryForm from '../components/CategoryForm';
 import CategoryList from '../components/CategoryList';
@@ -30,10 +30,24 @@ const navigate=useNavigate()
         myPosts:false,
         addPost:false
     })
+
+// for handling Add post of header 
+useEffect(()=>{
+
+    const query=new URLSearchParams(location.search)
+    if(query.get("view")==="addPost"){
+        setShowItem({addPost:true})
+    }
+},[location.search])
+//_____for handling Add post of header 
+
+
+
+
     if(isLoading)return <Loader />
     if(error){return toast.error(`دریافت پست های شما با خطا مواجه شد ، دوباره امتحان کنید`)}
     return (
-        <section className='absolute flex flex-col  items-start  w-full h-[85svh]  z-10' >
+        <section className='absolute flex flex-col  items-start  w-full h-[85svh]  z-10 overflow-clip' >
             <section className='h-28  flex flex-row  sm:w-full text-xs sm:text-sm text-nowrap w-full sm:right-1/3 items-center justify-center sm:gap-4  '>
 
                 <button className={`Darkbutton  h-11 text-wrap  text-[0.5rem] w-1/5 sm:text-base ${showItem.categoryList ? "bg-black text-white" : "bg-white text-black"}`}
@@ -61,7 +75,7 @@ const navigate=useNavigate()
                 خروج
                 </button>
             </section>
-            <section className='relative w-[80%] right-[10%] h-full '>
+            <section className='relative w-[80%] right-[10%] overflow-y-scroll overflow-x-hidden '>
 
                 {showItem.categoryList?
                     <CategoryList/>:
